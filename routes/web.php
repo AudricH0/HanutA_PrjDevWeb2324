@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/admin/register', [AdminController::class, 'create'])->name('register.admin'); //->middleware('adminCreated');
+Route::post('/admin/register', [AdminController::class, 'store'])->name('register.admin'); //->middleware('adminCreated');
 
 Route::get('/', function () {
     return view('welcome');

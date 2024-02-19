@@ -8,15 +8,16 @@ return new class extends Migration
 {
     /**
      * Fonction appelée lors de la migration.
-     * S'occupe de la création de la Table Users, représentant un Utilisateur dans la DB.
+     * S'occupe de la création de la Table Class, réprésentant une Classe dans la DB.
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id('pkUser');
-            $table->string('login')->unique();
-            $table->string('pswd');
-            $table->boolean('admin');
+        Schema::create('class', function (Blueprint $table) {
+            $table->id('pkClas');
+            $table->unsignedBigInteger('fkEtab')->nullable();
+            $table->unsignedInteger('niv');
+            $table->string('ident');
+            $table->unsignedInteger('nbEtud');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('class');
     }
 };
