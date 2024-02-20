@@ -47,8 +47,8 @@ class Etud extends Model
     /**
      * Définit la relation "belongsToMany" avec le modèle "Epr".
      */
-//    public function eprs(): BelongsToMany
-//    {
-//        return $this->belongsToMany(Epr::class, 'inscrs', 'fkEtud', 'fkEpr')->withPivot('noDos', 'rw', 'tstart', 'tend', 'temps');
-//    }
+    public function eprs(): BelongsToMany
+    {
+        return $this->belongsToMany(Epr::class, 'inscrs', 'fkEtud', 'fkEpr')->withPivot('noDos', 'rw', 'tstart', 'tend', 'temps');
+    }
 }

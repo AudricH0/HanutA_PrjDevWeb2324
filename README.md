@@ -62,6 +62,12 @@ Ce modèle représente un étudiant dans l'application.
 
 - *app/Models/Etud.php*
 
+#### Epr
+
+Représente une épreuve.
+
+- *app/Models/Epr.php*
+
 ### Création des Controllers
 
 #### AdminController
@@ -82,6 +88,12 @@ Ce contrôleur gère les opérations liées aux classes dans l'application.
 
 - *app/Http/Controllers/ClasController.php*
 
+#### EtudController
+
+Contrôleur pour la gestion des étudiants.
+
+- *app/Http/Controllers/EtudController.php*
+
 ### Création des Requests
 
 #### AdminRequest
@@ -101,6 +113,12 @@ Cette classe représente une requête de session utilisateur. Elle valide les do
 Requête de validation pour la création ou la mise à jour d'une classe.
 
 - *app/Http/Requests/ClasRequest.php*
+
+#### EtudRequest
+
+Valide les requêtes de création ou de mise à jour d'un étudiant.
+
+- *app/Http/Requests/EtudRequest.php*
 
 ### Création des vues
 
@@ -139,6 +157,14 @@ Composant Blade pour afficher un tableau d'étudiants.
 - *resources/views/components/etud-table.blade.php*
 - *app/View/Components/EtudTable.php*
 
+Composant Blade pour représenter un tableau d'affichage des épreuves.
+- *resources/views/components/epr-table.blade.php*
+- *app/View/Components/EprTable.php*
+
+Composant Blade qui représente un formulaire pour la création ou la modification d'un étudiant.
+- *resources/views/components/etud-form.blade.php*
+- *app/View/Components/EtudForm.php*
+
 ### Création des middlewares
 
 #### FirstTimeSetup
@@ -160,3 +186,7 @@ Ce middleware vérifie si un administrateur a déjà été créé dans l'applica
 Politique d'accès pour les classes.
 
 - *app/Policies/ClasPolicy.php*
+
+Politique d'accès pour les étudiants.
+
+- *app/Policies/EtudPolicy.php*
