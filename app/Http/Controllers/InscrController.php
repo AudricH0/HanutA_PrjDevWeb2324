@@ -96,7 +96,9 @@ class InscrController extends Controller
             $noDos = $noDos + 1;
         }
 
-        $epr->etuds()->attach($validated['etud'], ['noDos' => $noDos, 'rw' => $validated['rw']]);
+        $tstart = $epr->tstart ?? $validated['tstart'];
+
+        $epr->etuds()->attach($validated['etud'], ['noDos' => $noDos, 'rw' => $validated['rw'], 'tstart' => $tstart]);
         $etud = Etud::findOrFail($validated['etud']);
         $etud->nbIns++;
         $epr->nbPart++;
@@ -137,16 +139,57 @@ class InscrController extends Controller
         }
         catch (Exception)
         {
-            return redirect()->back()->with('alert', ['type' => 'danger', 'message' => 'Erreur lors de la suppresion de l\'inscription.']);
+            return redirect()->back()->with('alert', ['type' => 'danger', 'message' => 'Erreur lors de la suppression de l\'inscription.']);
         }
 
         return redirect()->back()->with('alert', ['type' => 'warning', 'message' => 'Etudiant désinscrit']);
     }
 
+    /**
+     * Affiche les détails d'une inscription à une épreuve.
+     */
     public function show(Epr $epr, Etud $etud)
     {
-        // TODO A finir
-        dd($etud);
-        die();
+        $breadcrump = [
+            ['label' => 'Inscriptions', 'url' => '/inscr'],
+            ['label' => $epr->date, 'url' => '/inscr/' . $epr->pkEpr],
+            ['label' => $etud->nom, 'url' => '/etud/' . $epr->pkEpr],
+        ];
+
+        return view('Inscr.show', [
+            'etud' => $epr->etuds()->find($etud->pkEtud),
+            'epr' => $epr,
+            'breadcrump' => $breadcrump
+        ]);
+    }
+
+    /**
+     * Met à jour les détails d'une inscription à une épreuve.
+     */
+    public function update(Request $request, Epr $epr, Etud $etud)
+    {
+        $request->validate([
+            'rw' => 'required'
+        ]);
+
+        $inscr = $epr->etuds()->find($etud->pkEtud);
+
+        $inscr->pivot->rw = $request['rw'];
+
+        if(isset($request['tstart']))
+        {
+            $inscr->pivot->tstart = $request['tstart'];
+        }
+
+        try
+        {
+            $inscr->pivot->save();
+        }
+        catch (Exception)
+        {
+            return redirect()->back()->with('alert', ['type' => 'danger', 'message' => 'Erreur lors de la modification de l\'inscription.']);
+        }
+
+        return redirect()->back()->with('alert', ['type' => 'success', 'message' => 'Inscription modifiée']);
     }
 }

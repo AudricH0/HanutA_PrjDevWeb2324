@@ -11,36 +11,12 @@
 
 @section('content')
 
-    <form class="row g-3" method="post">
-        @csrf
-        @method('POST')
-        <div class="col-12">
-            <label for="noDos" class="form-label">N° Dossard</label>
-            <input type="text" class="form-control @error('noDos') is-invalid @enderror" id="noDos"
-                   name="noDos">
-            @error('noDos')
-            <div class="invalid-feedback">
-                {{ $message }}
-            </div>
-            @enderror
-        </div>
 
-        <div class="row text-end">
-            <div class="col-6 text-end mt-5 offset-6 ">
-                <input type="submit" class="btn btn-primary" type="submit" value="Enregistrer"/>
-            </div>
-        </div>
+    @component('components.arriv-form', ['nbEtudArrive' => $nbEtudArrive, 'nbEtud' => $nbEtud]) @endcomponent
 
-    </form>
-
-    <div>
-        <h5>Etudiants dans la course</h5>
-        <p>Nombre étudiants arrivé : {{ $nbEtudArrive }}</p>
-        <p>Nombre étudiants inscrit : {{ $nbEtud }}</p>
-    </div>
 
     <div class="row">
-        <dic class="col-6">
+        <div class="col-6">
             <table class="table table-hover mt-4 border border-black p-2 mb-2 border-opacity-10">
                 <thead>
                 <tr>
@@ -65,7 +41,7 @@
                 </tbody>
 
             </table>
-        </dic>
+        </div>
     </div>
 
 @endsection

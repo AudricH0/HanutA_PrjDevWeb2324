@@ -43,7 +43,7 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/etud', [EtudController::class, 'index'])->name('etud.index');
     Route::get('/etud/create', [EtudController::class, 'create'])->name('etud.create');
     Route::post('/etud/create', [EtudController::class, 'store']);
-    Route::get('/etud/{etud}', [EtudController::class, 'edit']);
+    Route::get('/etud/{etud}', [EtudController::class, 'edit'])->name('etud.edit');
     Route::put('/etud/{etud}', [EtudController::class, 'update']);
     Route::get('/etud/{etud}/delete', [EtudController::class, 'delete']);
     Route::delete('/etud/{etud}/delete', [EtudController::class, 'destroy']);
@@ -51,7 +51,7 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/epr', [EprController::class, 'index'])->name('epr.index');
     Route::get('/epr/create', [EprController::class, 'create'])->name('epr.create');
     Route::post('/epr/create', [EprController::class, 'store']);
-    Route::get('/epr/{epr}', [EprController::class, 'edit']);
+    Route::get('/epr/{epr}', [EprController::class, 'edit'])->name('epr.edit');
     Route::put('/epr/{epr}', [EprController::class, 'update']);
     Route::get('/epr/{epr}/delete', [EprController::class, 'delete']);
     Route::delete('/epr/{epr}/delete', [EprController::class, 'destroy']);
@@ -62,7 +62,8 @@ Route::middleware(['auth'])->group(function() {
     Route::post('/inscr/{epr}', [InscrController::class, 'store']);
     Route::delete('/inscr/{epr}', [InscrController::class, 'destroy']);
 
-    Route::get('/epr/{epr}/inscr/{etud}', [InscrController::class, 'show']);
+    Route::get('/inscr/{epr}/{etud}', [InscrController::class, 'show']);
+    Route::put('/inscr/{epr}/{etud}', [InscrController::class, 'update']);
 
     Route::get('/arriv', [ArrivController::class, 'index']);
     Route::post('/arriv', [ArrivController::class, 'getEpr']);

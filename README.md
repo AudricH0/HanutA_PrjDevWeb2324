@@ -201,9 +201,21 @@ Composant Blade pour représenter un tableau d'affichage des épreuves.
 - *resources/views/components/epr-table.blade.php*
 - *app/View/Components/EprTable.php*
 
-Représente un formulaire pour les épreuves.
+Composant Blade pour représenter un formulaire pour les épreuves.
 - *resources/views/components/epr-form.blade.php*
 - *app/View/Components/EprForm.php*
+
+Composant Blade pour afficher le formulaire d'arrivée des étudiants à une épreuve.
+- *resources/views/components/arriv-form.blade.php*t
+- *app/View/Components/ArrivForm.php*
+
+Composant Blade pour afficher le formulaire de modification des inscriptions à une épreuve.
+- *resources/views/components/edit-inscr-form.blade.php*
+- *app/View/Components/EditInscrForm.php*
+
+Composant pour afficher le formulaire de détails d'une inscription à une épreuve.
+- *resources/views/components/show-inscr-form.blade.php*
+- *app/View/Components/ShowInscrForm.php*
 
 ### Création des middlewares
 

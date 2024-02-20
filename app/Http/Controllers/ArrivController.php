@@ -43,12 +43,18 @@ class ArrivController extends Controller
      */
     public function edit(Epr $epr)
     {
+        $breadcrump = [
+            ['label' => 'Arrivées', 'url' => '/arriv'],
+            ['label' => $epr->date, 'url' => '/arriv/' . $epr->pkEpr],
+        ];
+
         $nbEtud = $epr->etuds()->count();
         $nbEtudArrive = $epr->etuds()->wherePivot('tend', '<>', 'null')->count();
 
         $allEtud = $epr->etuds()->wherePivot('rw', '=', 'W')->get();
 
         return view('Arriv.edit', [
+            'breadcrump' => $breadcrump,
             'epr' => $epr,
             'nbEtud' => $nbEtud,
             'nbEtudArrive' => $nbEtudArrive,
