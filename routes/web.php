@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +17,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/admin/register', [AdminController::class, 'create'])->name('register.admin'); //->middleware('adminCreated');
 Route::post('/admin/register', [AdminController::class, 'store'])->name('register.admin'); //->middleware('adminCreated');
+
+Route::middleware(['guest'])->group(function() {
+    Route::get('/login', [SessionController::class, 'create'])->name('login');
+    Route::post('/login', [SessionController::class, 'store']);
+});
+
+Route::middleware(['auth'])->group(function() {
+    Route::get('/logout', [SessionController::class, 'logout']);
+    Route::delete('/logout', [SessionController::class, 'destroy']);
+});
 
 Route::get('/', function () {
     return view('welcome');

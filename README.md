@@ -58,6 +58,12 @@ Ce contrôleur gère la création et le stockage de nouveaux administrateurs.
 
 - *app/Http/Controllers/AdminController.php*
 
+#### SessionController
+
+Ce contrôleur gère les opérations de gestion de session utilisateur, telles que la connexion, la déconnexion, etc.
+
+- *app/Http/Controllers/SessionController.php*
+
 ### Création des Requests
 
 #### AdminRequest
@@ -65,6 +71,12 @@ Ce contrôleur gère la création et le stockage de nouveaux administrateurs.
 Représente une requête pour un administrateur
 
 - *app/Http/Requests/AdminRequest.php*
+
+#### SessionRequest
+
+Cette classe représente une requête de session utilisateur. Elle valide les données entrées par l'utilisateur lors de la connexion
+
+- *app/Http/Requests/SessionRequest.php*
 
 ### Création des vues
 
@@ -78,3 +90,8 @@ Layout de base de ma page HTML
 Composant utilisé pour afficher un message éphémère à l'utilisateur. Il peut être utilisé pour afficher des messages d'alerte, de succès, etc.
 - *resources/views/components/flash-message.blade.php*
 - *app/View/Components/FlashMessage.php*
+
+Composant utilisé pour afficher une barre de navigation en utilisant des éléments de navigation spécifiés.
+- *resources/views/components/breadcrumb.blade.php*
+- *app/View/Components/Breadcrumb.php*
+
