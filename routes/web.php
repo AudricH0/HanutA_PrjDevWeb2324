@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/admin/register', [AdminController::class, 'create'])->name('register.admin'); //->middleware('adminCreated');
-Route::post('/admin/register', [AdminController::class, 'store'])->name('register.admin'); //->middleware('adminCreated');
+Route::get('/admin/register', [AdminController::class, 'create'])->name('register.admin')->middleware('adminCreated');
+Route::post('/admin/register', [AdminController::class, 'store'])->name('register.admin')->middleware('adminCreated');
 
 Route::middleware(['guest'])->group(function() {
     Route::get('/login', [SessionController::class, 'create'])->name('login');
@@ -26,8 +26,10 @@ Route::middleware(['guest'])->group(function() {
 Route::middleware(['auth'])->group(function() {
     Route::get('/logout', [SessionController::class, 'logout']);
     Route::delete('/logout', [SessionController::class, 'destroy']);
+
+    Route::get('/', function () {
+        return view('welcome');
+    })->name('home');
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
+

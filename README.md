@@ -95,3 +95,20 @@ Composant utilisé pour afficher une barre de navigation en utilisant des élém
 - *resources/views/components/breadcrumb.blade.php*
 - *app/View/Components/Breadcrumb.php*
 
+### Création des middlewares
+
+#### FirstTimeSetup
+
+Ce middleware vérifie si c'est la première fois que le setup est effectué dans l'application. S'il n'y a aucun utilisateur enregistré dans la base de données, il redirige l'utilisateur vers la page d'inscription de l'administrateur.
+
+- *app/Http/Middleware/FirstTimeSetup.php*
+- *app/Http/Kernel.php*
+
+#### AdminCreated
+
+Ce middleware vérifie si un administrateur a déjà été créé dans l'application. Si un utilisateur est enregistré dans la base de données, il redirige l'utilisateur vers la page d'accueil.
+
+- *app/Http/Middleware/AdminCreated.php*
+- *app/Http/Kernel.php*
+
+
