@@ -50,6 +50,18 @@ Représentation d'un utilisateur de notre Site Web.
 
 - *app/Models/User.php*
 
+#### Clas
+
+Ce modèle représente une classe dans l'application.
+
+- *app/Models/Clas.php*
+
+#### Etud
+
+Ce modèle représente un étudiant dans l'application.
+
+- *app/Models/Etud.php*
+
 ### Création des Controllers
 
 #### AdminController
@@ -64,6 +76,12 @@ Ce contrôleur gère les opérations de gestion de session utilisateur, telles q
 
 - *app/Http/Controllers/SessionController.php*
 
+#### ClasController
+
+Ce contrôleur gère les opérations liées aux classes dans l'application.
+
+- *app/Http/Controllers/ClasController.php*
+
 ### Création des Requests
 
 #### AdminRequest
@@ -77,6 +95,12 @@ Représente une requête pour un administrateur
 Cette classe représente une requête de session utilisateur. Elle valide les données entrées par l'utilisateur lors de la connexion
 
 - *app/Http/Requests/SessionRequest.php*
+
+#### ClasRequest
+
+Requête de validation pour la création ou la mise à jour d'une classe.
+
+- *app/Http/Requests/ClasRequest.php*
 
 ### Création des vues
 
@@ -95,6 +119,26 @@ Composant utilisé pour afficher une barre de navigation en utilisant des élém
 - *resources/views/components/breadcrumb.blade.php*
 - *app/View/Components/Breadcrumb.php*
 
+Composant Blade pour afficher une table de classes.
+- *resources/views/components/clas-table.blade.php*
+- *app/View/Components/ClasTable.php*
+
+Composant Blade pour une barre de recherche.
+- *resources/views/components/search.blade.php*
+- *app/View/Components/Search.php*
+
+Composant Blade pour afficher un formulaire de classe.
+- *resources/views/components/clas-form.blade.php*
+- *app/View/Components/ClasForm.php*
+
+Composant Blade pour afficher un formulaire de suppression.
+- *resources/views/components/delete-form.blade.php*
+- *app/View/Components/DeleteForm.php*
+
+Composant Blade pour afficher un tableau d'étudiants.
+- *resources/views/components/etud-table.blade.php*
+- *app/View/Components/EtudTable.php*
+
 ### Création des middlewares
 
 #### FirstTimeSetup
@@ -111,4 +155,8 @@ Ce middleware vérifie si un administrateur a déjà été créé dans l'applica
 - *app/Http/Middleware/AdminCreated.php*
 - *app/Http/Kernel.php*
 
+### Création des Policy
 
+Politique d'accès pour les classes.
+
+- *app/Policies/ClasPolicy.php*

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ClasController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,14 @@ Route::middleware(['guest'])->group(function() {
 Route::middleware(['auth'])->group(function() {
     Route::get('/logout', [SessionController::class, 'logout']);
     Route::delete('/logout', [SessionController::class, 'destroy']);
+
+    Route::get('/clas', [ClasController::class, 'index'])->name('clas.index');
+    Route::get('/clas/create', [ClasController::class, 'create'])->name('clas.create');
+    Route::post('/clas/create', [ClasController::class, 'store']);
+    Route::get('/clas/{clas}', [ClasController::class, 'edit']);
+    Route::put('/clas/{clas}', [ClasController::class, 'update']);
+    Route::get('/clas/{clas}/delete', [ClasController::class, 'delete']);
+    Route::delete('/clas/{clas}/delete', [ClasController::class, 'destroy'])->name('clas.delete');
 
     Route::get('/', function () {
         return view('welcome');
