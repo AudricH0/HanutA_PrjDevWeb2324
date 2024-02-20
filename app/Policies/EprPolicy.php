@@ -3,9 +3,9 @@
 namespace App\Policies;
 
 /**
- * Politique d'accès pour les étudiants.
+ * Contrôle l'accès aux ressources des épreuves.
  */
-class EtudPolicy
+class EprPolicy
 {
     /**
      * Crée une nouvelle instance de politique.
@@ -16,7 +16,7 @@ class EtudPolicy
     }
 
     /**
-     * Détermine si l'utilisateur peut voir la liste des étudiants.
+     * Détermine si l'utilisateur peut voir la liste des épreuves.
      */
     public function viewAny()
     {
@@ -24,7 +24,7 @@ class EtudPolicy
     }
 
     /**
-     * Détermine si l'utilisateur peut voir un étudiant spécifique.
+     * Détermine si l'utilisateur peut voir une épreuve spécifique.
      */
     public function view()
     {
@@ -32,7 +32,7 @@ class EtudPolicy
     }
 
     /**
-     * Détermine si l'utilisateur peut créer un nouvel étudiant.
+     * Détermine si l'utilisateur peut créer une nouvelle épreuve.
      */
     public function create()
     {
@@ -40,7 +40,7 @@ class EtudPolicy
     }
 
     /**
-     * Détermine si l'utilisateur peut mettre à jour un étudiant existant.
+     * Détermine si l'utilisateur peut mettre à jour une épreuve existante.
      */
     public function update()
     {
@@ -48,7 +48,7 @@ class EtudPolicy
     }
 
     /**
-     * Détermine si l'utilisateur peut supprimer un étudiant.
+     * Détermine si l'utilisateur peut supprimer une épreuve.
      */
     public function delete()
     {

@@ -94,6 +94,12 @@ Contrôleur pour la gestion des étudiants.
 
 - *app/Http/Controllers/EtudController.php*
 
+#### EprController
+
+Gère les opérations liées aux épreuves.
+
+- *app/Http/Controllers/EprController.php*
+
 ### Création des Requests
 
 #### AdminRequest
@@ -119,6 +125,12 @@ Requête de validation pour la création ou la mise à jour d'une classe.
 Valide les requêtes de création ou de mise à jour d'un étudiant.
 
 - *app/Http/Requests/EtudRequest.php*
+
+#### EprRequest
+
+Valide les données de la requête pour la création ou la mise à jour d'une épreuve.
+
+- *app/Http/Requests/EprRequest.php*
 
 ### Création des vues
 
@@ -157,13 +169,17 @@ Composant Blade pour afficher un tableau d'étudiants.
 - *resources/views/components/etud-table.blade.php*
 - *app/View/Components/EtudTable.php*
 
+Composant Blade qui représente un formulaire pour la création ou la modification d'un étudiant.
+- *resources/views/components/etud-form.blade.php*
+- *app/View/Components/EtudForm.php*
+
 Composant Blade pour représenter un tableau d'affichage des épreuves.
 - *resources/views/components/epr-table.blade.php*
 - *app/View/Components/EprTable.php*
 
-Composant Blade qui représente un formulaire pour la création ou la modification d'un étudiant.
-- *resources/views/components/etud-form.blade.php*
-- *app/View/Components/EtudForm.php*
+Représente un formulaire pour les épreuves.
+- *resources/views/components/epr-form.blade.php*
+- *app/View/Components/EprForm.php*
 
 ### Création des middlewares
 
@@ -190,3 +206,7 @@ Politique d'accès pour les classes.
 Politique d'accès pour les étudiants.
 
 - *app/Policies/EtudPolicy.php*
+
+Contrôle l'accès aux ressources des épreuves.
+
+- *app/Policies/EprPolicy.php*

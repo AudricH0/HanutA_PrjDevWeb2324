@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ClasController;
+use App\Http\Controllers\EprController;
 use App\Http\Controllers\EtudController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +45,14 @@ Route::middleware(['auth'])->group(function() {
     Route::put('/etud/{etud}', [EtudController::class, 'update']);
     Route::get('/etud/{etud}/delete', [EtudController::class, 'delete']);
     Route::delete('/etud/{etud}/delete', [EtudController::class, 'destroy']);
+
+    Route::get('/epr', [EprController::class, 'index'])->name('epr.index');
+    Route::get('/epr/create', [EprController::class, 'create'])->name('epr.create');
+    Route::post('/epr/create', [EprController::class, 'store']);
+    Route::get('/epr/{epr}', [EprController::class, 'edit']);
+    Route::put('/epr/{epr}', [EprController::class, 'update']);
+    Route::get('/epr/{epr}/delete', [EprController::class, 'delete']);
+    Route::delete('/epr/{epr}/delete', [EprController::class, 'destroy']);
 
     Route::get('/', function () {
         return view('welcome');
