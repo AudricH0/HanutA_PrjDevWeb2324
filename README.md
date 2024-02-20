@@ -68,6 +68,12 @@ Représente une épreuve.
 
 - *app/Models/Epr.php*
 
+#### Inscr
+
+Représente le modèle d'une inscription à une épreuve pour un étudiant.
+
+- *app/Models/Inscr.php*
+
 ### Création des Controllers
 
 #### AdminController
@@ -100,6 +106,18 @@ Gère les opérations liées aux épreuves.
 
 - *app/Http/Controllers/EprController.php*
 
+#### InscrController
+
+Contrôleur pour la gestion des inscriptions aux épreuves.
+
+- *app/Http/Controllers/InscrController.php*
+
+#### ArrivController
+
+Contrôleur gérant les arrivées des étudiants aux épreuves.
+
+- *app/Http/Controllers/ArrivController.php*
+
 ### Création des Requests
 
 #### AdminRequest
@@ -131,6 +149,12 @@ Valide les requêtes de création ou de mise à jour d'un étudiant.
 Valide les données de la requête pour la création ou la mise à jour d'une épreuve.
 
 - *app/Http/Requests/EprRequest.php*
+
+#### InscrRequest
+
+Valide les requêtes de création ou de mise à jour d'une inscription à une épreuve.
+
+- *app/Http/Requests/InscrRequest.php*
 
 ### Création des vues
 
@@ -207,6 +231,10 @@ Politique d'accès pour les étudiants.
 
 - *app/Policies/EtudPolicy.php*
 
-Contrôle l'accès aux ressources des épreuves.
+Politique d'accès pour les épreuves.
 
 - *app/Policies/EprPolicy.php*
+
+Politique d'accès pour les inscriptions.
+
+- *app/Policies/InscrPolicy.php*

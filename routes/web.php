@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ArrivController;
 use App\Http\Controllers\ClasController;
 use App\Http\Controllers\EprController;
 use App\Http\Controllers\EtudController;
+use App\Http\Controllers\InscrController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
@@ -53,6 +55,19 @@ Route::middleware(['auth'])->group(function() {
     Route::put('/epr/{epr}', [EprController::class, 'update']);
     Route::get('/epr/{epr}/delete', [EprController::class, 'delete']);
     Route::delete('/epr/{epr}/delete', [EprController::class, 'destroy']);
+
+    Route::get('/inscr', [InscrController::class, 'index'])->name('inscr.index');
+    Route::post('/inscr', [InscrController::class, 'getEpr']);
+    Route::get('/inscr/{epr}', [InscrController::class, 'edit'])->name('inscr.edit');
+    Route::post('/inscr/{epr}', [InscrController::class, 'store']);
+    Route::delete('/inscr/{epr}', [InscrController::class, 'destroy']);
+
+    Route::get('/epr/{epr}/inscr/{etud}', [InscrController::class, 'show']);
+
+    Route::get('/arriv', [ArrivController::class, 'index']);
+    Route::post('/arriv', [ArrivController::class, 'getEpr']);
+    Route::get('/arriv/{epr}', [ArrivController::class, 'edit']);
+    Route::post('/arriv/{epr}', [ArrivController::class, 'store']);
 
     Route::get('/', function () {
         return view('welcome');
