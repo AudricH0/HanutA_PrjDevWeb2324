@@ -31,8 +31,8 @@
                 <form method="post">
                     @csrf
                     <div class="form mb-3 novalidate">
-                        <label for="login" class="form-label">Login</label>
-                        <input type="text" class="form-control @error('login') is-invalid @enderror" name="login" id="login"
+                        <label for="user" class="form-label">Login</label>
+                        <input type="text" class="form-control @error('login') is-invalid @enderror" name="login" id="user"
                                value="{{ old('login') }}">
                         @error('login')
                         <div class="invalid-feedback">
