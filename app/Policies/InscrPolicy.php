@@ -2,11 +2,15 @@
 
 namespace App\Policies;
 
+use App\Models\Inscr;
+use App\Models\User;
+
 /**
  * Politique d'accès pour les inscriptions.
  */
 class InscrPolicy
 {
+
     /**
      * Crée une nouvelle instance de politique.
      */
@@ -42,9 +46,9 @@ class InscrPolicy
     /**
      * Détermine si l'utilisateur peut mettre à jour une inscription existant.
      */
-    public function update()
+    public function update(User $user, Inscr $inscr)
     {
-        return true;
+        return is_null($inscr->tend);
     }
 
     /**

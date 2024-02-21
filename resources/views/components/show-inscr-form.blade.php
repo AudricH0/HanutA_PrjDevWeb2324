@@ -67,7 +67,7 @@
         </div>
         <div class="col-6">
             <label for="rw" class="form-label">Run / Walk</label>
-            <select class="form-select @error('rw') is-invalid @enderror" id="rw" name="rw">
+            <select class="form-select @error('rw') is-invalid @enderror" id="rw" name="rw" @if(!is_null($etud->pivot->tend)) disabled @endif>
                 <option selected
                         value="{{$etud->pivot->rw}}">{{ $etud->pivot->rw === 'R' ? 'Run' : 'Walk'  }}</option>
                 <option
@@ -83,7 +83,7 @@
             <label for="tstart" class="form-label">Début de la course</label>
             <input id="tstart" class="form-control @error('tstart') is-invalid @enderror" type="time"
                    value="{{ Carbon::createFromFormat('H:i:s', $etud->pivot->tstart )->format('H:i')  }}"
-                   name="tstart" @if(! is_null($epr->tstart)) disabled @endif />
+                   name="tstart" @if(!is_null($etud->pivot->tend)) disabled @endif />
             @error('tstart')
             <div class="invalid-feedback">
                 {{ $message }}
