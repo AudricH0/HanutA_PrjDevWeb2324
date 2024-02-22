@@ -1,8 +1,14 @@
-<div class="row mt-5">
+<div class="col-3 mt-5 ">
+    <x-search />
+</div>
+
+<div class="row mt-2 mb-5">
+
 
 
     <div class="col-6">
         <h4>Etudiants non inscrit</h4>
+
         <table class="table table-hover mt-4 border border-black p-2 mb-2 border-opacity-10">
             <thead>
             <tr>
@@ -57,7 +63,9 @@
             </tbody>
 
         </table>
+        {{ $allEtudNotIn->links() }}
     </div>
+
     <div class="col-6">
         <h4>Etudiants inscrit</h4>
         <table class="table table-hover mt-4 border border-black p-2 mb-2 border-opacity-10">
@@ -104,6 +112,6 @@
             </tbody>
 
         </table>
-
+        {{ $allEtudIn->links() }}
     </div>
 </div>

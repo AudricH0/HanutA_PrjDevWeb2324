@@ -36,7 +36,7 @@ class InscrRequest extends FormRequest
     {
         return [
             'etud.required' => 'L\'étudiant est requis.',
-            'rw.required' => 'Le résultat de l\'épreuve est requis.',
+            'rw.required' => 'Le type de coureur est requis.',
         ];
     }
 }

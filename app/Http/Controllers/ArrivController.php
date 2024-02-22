@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Epr;
 use App\Models\Inscr;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -54,14 +55,16 @@ class ArrivController extends Controller
             $nbEtud = $epr->etuds()->count();
             $nbEtudArrive = $epr->etuds()->wherePivot('tend', '<>', 'null')->count();
 
-            $allEtud = $epr->etuds()->wherePivot('rw', '=', 'W')->get();
+            $allEtudWalk = $epr->etuds()->wherePivot('rw', '=', 'W')->wherePivot('temps', '<>', 'null')->get();
+            $allEtudRun = $epr->etuds()->wherePivot('rw', '=', 'R')->wherePivot('temps', '<>', 'null')->orderBy('temps')->get();
 
             return view('Arriv.edit', [
                 'breadcrump' => $breadcrump,
                 'epr' => $epr,
                 'nbEtud' => $nbEtud,
                 'nbEtudArrive' => $nbEtudArrive,
-                'allEtud' => $allEtud
+                'allEtudWalk' => $allEtudWalk,
+                'allEtudRun' => $allEtudRun
             ]);
         } catch (\Exception $e) {
             return redirect()->back()->with('alert', ['type' => 'danger', 'message' => 'Erreur.']);
@@ -69,28 +72,51 @@ class ArrivController extends Controller
 
     }
 
+    private function getInscr($noDos, Epr $epr)
+    {
+        foreach ($epr->etuds as $e)
+        {
+            if($e->pivot->noDos === $noDos) {
+                return $e;
+            }
+        }
+        return null;
+    }
+
     /**
      * Enregistre l'arrivée d'un étudiant à une épreuve.
      */
     public function store(Request $request, Epr $epr)
     {
+        $noDos = $request['noDos'];
+        $inscr = $epr->etuds()->wherePivot('noDos', $noDos)->first();
+
+        if(is_null($inscr))
+        {
+            return redirect()->back()->with('alert', ['type' => 'danger', 'message' => 'N° de dossard introuvable pour cette epreuve.']);
+        }
+
+        if(! is_null($inscr->pivot->tend))
+        {
+            return redirect()->back()->with('alert', ['type' => 'danger', 'message' => 'Etudiant déjà arrivé']);
+        }
+
         try {
-            $inscr = Inscr::where('noDos', $request['noDos'])->first();
-            $inscr = $epr->etuds()->find($inscr->fkEtud);
-
-            if(! is_null($inscr->pivot->tend))
-            {
-                return redirect()->back()->with('alert', ['type' => 'danger', 'message' => 'Etudiant déjà arrivé']);
-            }
-
             $inscr->pivot->tend = now();
+
+            $tstart = Carbon::createFromTimeString($inscr->pivot->tstart);
+            $tend = Carbon::createFromTimeString($inscr->pivot->tend);
+
+            $diff = $tstart->diff($tend);
+
+            $diffFormatted = $diff->format('%H:%I:%S');
+
+            $inscr->pivot->temps = $diffFormatted;
             $inscr->pivot->save();
 
             return redirect()->back()->with('alert', ['type' => 'success', 'message' => 'Arrivée enregistrée.']);
-
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             return redirect()->back()->with('alert', ['type' => 'danger', 'message' => 'Erreur.']);
         }
-
     }
 }

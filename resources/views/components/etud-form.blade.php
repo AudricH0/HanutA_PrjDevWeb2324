@@ -63,10 +63,10 @@
                     @foreach($allClas as $c)
                         @if(isset($c->pkClas) && isset($etud->clas->pkClas))
                             @if($etud->clas->pkClas != $c->pkClas)
-                                <option value="{{$c->pkClas}}">{{$c->ident}}</option>
+                                <option value="{{$c->pkClas}}">{{$c->niv}} - {{$c->ident}}</option>
                             @endif
                         @else
-                            <option value="{{$c->pkClas}}">{{$c->ident}}</option>
+                            <option value="{{$c->pkClas}}">{{$c->niv}} - {{$c->ident}}</option>
                         @endif
 
                     @endforeach

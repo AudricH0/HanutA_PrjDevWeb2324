@@ -39,23 +39,34 @@ class InscrController extends Controller
     /**
      * Affiche le formulaire pour l'inscription à une épreuve spécifique.
      */
-    public function edit(Epr $epr): RedirectResponse|\Illuminate\Contracts\Foundation\Application|Factory|View|Application
+    public function edit(Request $request, Epr $epr): RedirectResponse|\Illuminate\Contracts\Foundation\Application|Factory|View|Application
     {
+        if ($errors = $request->session()->get('errors')) {
+            if ($errors->has('rw')) {
+                // Une erreur spécifique pour votre_champ existe
+                $errorMessage = $errors->first('rw');
+                // Faites quelque chose avec l'erreur...
+            } else if ($errors->has('etud')) {
+                $errorMessage = $errors->first('etud');
+            }
+            return redirect()->back()->with('alert', ['type' => 'danger', 'message' => $errorMessage]);
+        }
+
         $breadcrump = [
             ['label' => 'Inscriptions', 'url' => '/inscr'],
             ['label' => $epr->date, 'url' => '/inscr/' . $epr->pkEpr],
         ];
 
         try {
-            $allEtudIn = $epr->etuds()->paginate(10);
+            $allEtudIn = $epr->etuds()->filter(request(['search']))->paginate(10);
 
-            $allEtudNotIn = Etud::
-            whereNotIn('pkEtud', function ($query) use ($epr) {
+            $allEtudNotIn = Etud::whereNotIn('pkEtud', function ($query) use ($epr) {
                 $query->select('fkEtud')
                     ->from('inscrs')
                     ->leftJoin('etuds', 'inscrs.fkEtud', '=', 'etuds.pkEtud')
                     ->where('fkEpr', $epr->pkEpr);
-            })->get();
+            })->filter(request(['search']))->paginate(10);
+
         } catch (\Exception $e) {
             return redirect()->back()->with('alert', ['type' => 'danger', 'message' => 'Erreur.']);
         }
@@ -87,6 +98,7 @@ class InscrController extends Controller
      */
     public function store(InscrRequest $request, Epr $epr)
     {
+
         $validated = $request->validated();
 
         try
