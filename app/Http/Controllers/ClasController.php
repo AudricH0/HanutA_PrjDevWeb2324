@@ -45,10 +45,6 @@ class ClasController extends Controller
      */
     public function create()
     {
-        $response = Gate::inspect('create', Clas::class);
-
-        var_dump($response);
-        die();
 
         $breadcrump = [
             ['label' => 'Classes', 'url' => '/clas'],
