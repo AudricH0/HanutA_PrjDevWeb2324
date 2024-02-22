@@ -72,17 +72,6 @@ class ArrivController extends Controller
 
     }
 
-    private function getInscr($noDos, Epr $epr)
-    {
-        foreach ($epr->etuds as $e)
-        {
-            if($e->pivot->noDos === $noDos) {
-                return $e;
-            }
-        }
-        return null;
-    }
-
     /**
      * Enregistre l'arrivée d'un étudiant à une épreuve.
      */
