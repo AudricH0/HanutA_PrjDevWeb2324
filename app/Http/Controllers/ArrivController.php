@@ -78,19 +78,18 @@ class ArrivController extends Controller
     public function store(Request $request, Epr $epr)
     {
         $noDos = $request['noDos'];
-        $inscr = $epr->etuds()->wherePivot('noDos', $noDos)->first();
-
-        if(is_null($inscr))
-        {
-            return redirect()->back()->with('alert', ['type' => 'danger', 'message' => 'N° de dossard introuvable pour cette epreuve.']);
-        }
-
-        if(! is_null($inscr->pivot->tend))
-        {
-            return redirect()->back()->with('alert', ['type' => 'danger', 'message' => 'Etudiant déjà arrivé']);
-        }
 
         try {
+            $inscr = $epr->etuds()->wherePivot('noDos', $noDos)->first();
+
+            if (is_null($inscr)) {
+                return redirect()->back()->with('alert', ['type' => 'danger', 'message' => 'N° de dossard introuvable pour cette epreuve.']);
+            }
+
+            if (!is_null($inscr->pivot->tend)) {
+                return redirect()->back()->with('alert', ['type' => 'danger', 'message' => 'Etudiant déjà arrivé']);
+            }
+
             $inscr->pivot->tend = now();
 
             $tstart = Carbon::createFromTimeString($inscr->pivot->tstart);
@@ -104,8 +103,10 @@ class ArrivController extends Controller
             $inscr->pivot->save();
 
             return redirect()->back()->with('alert', ['type' => 'success', 'message' => 'Arrivée enregistrée.']);
+
         } catch (\Exception) {
             return redirect()->back()->with('alert', ['type' => 'danger', 'message' => 'Erreur.']);
         }
+
     }
 }
