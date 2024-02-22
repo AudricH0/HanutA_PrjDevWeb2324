@@ -32,7 +32,12 @@ class ClasController extends Controller
             ['label' => 'Classes', 'url' => '/clas'],
         ];
 
-        $result = Clas::latest()->filter(request(['search']))->paginate(10);
+        try {
+            $result = Clas::latest()->filter(request(['search']))->paginate(10);
+        } catch (Exception) {
+            return redirect()->back()->with('alert', ['type' => 'danger', 'message' => 'Erreur.']);
+        }
+
 
         return view('Clas.index', [
             'allClas' => $result,
@@ -66,7 +71,11 @@ class ClasController extends Controller
             ['label' => $clas->ident, 'url' => '/clas/' . $clas->pkClas],
         ];
 
-        $allEtuds = $clas->etuds()->filter(request(['search']))->paginate(10);
+        try {
+            $allEtuds = $clas->etuds()->filter(request(['search']))->paginate(10);
+        } catch (Exception) {
+            return redirect()->back()->with('alert', ['type' => 'danger', 'message' => 'Erreur.']);
+        }
 
         return view('Clas.edit', [
             'breadcrump' => $breadcrump,
@@ -138,11 +147,11 @@ class ClasController extends Controller
     public function update(ClasRequest $request, Clas $clas)
     {
         $request = $request->validated();
-        $clas->ident = $request['ident'];
-        $clas->niv = $request['niv'];
 
         try
         {
+            $clas->ident = $request['ident'];
+            $clas->niv = $request['niv'];
             $clas->save();
         }
         catch (Exception)

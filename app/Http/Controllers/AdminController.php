@@ -28,21 +28,23 @@ class AdminController extends Controller
     }
 
     /**
-     * Stocke un nouvel administrateur dans la base de données.
+     * Stocke un nouvel administrateur dans la base de données, connecte celui-ci et redirige vers home.
      */
     public function store(AdminRequest $request): RedirectResponse
     {
-        $request->validated();
-        $u = new User();
-        $u->login = $request['login'];
-        $u->pswd = bcrypt($request['password']);
-        $u->admin = true;
-
         try{
+            $request->validated();
+            $u = new User();
+            $u->login = $request['login'];
+            $u->pswd = bcrypt($request['password']);
+            $u->admin = true;
             $u->save();
         } catch (QueryException $e)
         {
             return redirect()->back()->with('alert', ['type' => 'danger', 'message' => 'Erreur lors de l\'enregistrement.']);
+        } catch (\Exception $e)
+        {
+            return redirect()->back()->with('alert', ['type' => 'danger', 'message' => 'Erreur.']);
         }
 
         Auth::login($u);

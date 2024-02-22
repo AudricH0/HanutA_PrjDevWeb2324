@@ -83,7 +83,7 @@
             <label for="tstart" class="form-label">Début de la course</label>
             <input id="tstart" class="form-control @error('tstart') is-invalid @enderror" type="time"
                    value="{{ Carbon::createFromFormat('H:i:s', $etud->pivot->tstart )->format('H:i')  }}"
-                   name="tstart" @if(!is_null($etud->pivot->tend)) disabled @endif />
+                   name="tstart" @if(!is_null($etud->pivot->tend) || !is_null($epr->tstart)) disabled @endif />
             @error('tstart')
             <div class="invalid-feedback">
                 {{ $message }}

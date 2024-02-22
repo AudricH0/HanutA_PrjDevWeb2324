@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Throwable;
@@ -30,5 +31,6 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
 
 }

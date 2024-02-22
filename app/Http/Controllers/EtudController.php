@@ -30,7 +30,11 @@ class EtudController extends Controller
             ['label' => 'Etudiants', 'url' => '/etud'],
         ];
 
-        $result = Etud::latest()->filter(request(['search']))->paginate(10);
+        try {
+            $result = Etud::latest()->filter(request(['search']))->paginate(10);
+        } catch (Exception) {
+            return redirect()->back()->with('alert', ['type' => 'danger', 'message' => 'Erreur.']);
+        }
 
         return view('Etud.index', [
             'allEtud' => $result,
@@ -90,7 +94,11 @@ class EtudController extends Controller
             ['label' => $etud->nom, 'url' => '/etud/' . $etud->pkEtud],
         ];
 
-        $allEpr = $etud->eprs()->filter(request(['search']))->paginate(10);
+        try {
+            $allEpr = $etud->eprs()->filter(request(['search']))->paginate(10);
+        } catch (Exception) {
+            return redirect()->back()->with('alert', ['type' => 'danger', 'message' => 'Erreur.']);
+        }
 
         return view('Etud.edit', [
             'breadcrump' => $breadcrump,
@@ -107,13 +115,12 @@ class EtudController extends Controller
     {
         $request = $request->validated();
 
-        $etud->nom = $request['nom'];
-        $etud->pren = $request['pren'];
-        $etud->sexe = $request['sexe'];
-        $etud->fkClas = $request['clas'];
-
         try
         {
+            $etud->nom = $request['nom'];
+            $etud->pren = $request['pren'];
+            $etud->sexe = $request['sexe'];
+            $etud->fkClas = $request['clas'];
             $etud->save();
         }
         catch (Exception)

@@ -29,7 +29,11 @@ class EprController extends Controller
             ['label' => 'Epreuves', 'url' => '/epr'],
         ];
 
-        $result = Epr::latest()->filter(request(['search']))->paginate(10);
+        try {
+            $result = Epr::latest()->filter(request(['search']))->paginate(10);
+        } catch (Exception) {
+            return redirect()->back()->with('alert', ['type' => 'danger', 'message' => 'Erreur.']);
+        }
 
         return view('Epr.index', [
             'allEpr' => $result,
@@ -87,7 +91,11 @@ class EprController extends Controller
             ['label' => $epr->date, 'url' => '/epr/' . $epr->pkEpr],
         ];
 
-        $allEtuds = $epr->etuds()->filter(request(['search']))->paginate(10);
+        try {
+            $allEtuds = $epr->etuds()->filter(request(['search']))->paginate(10);
+        } catch (Exception) {
+            return redirect()->back()->with('alert', ['type' => 'danger', 'message' => 'Erreur.']);
+        }
 
         return view('Epr.edit', [
             'breadcrump' => $breadcrump,
@@ -103,13 +111,12 @@ class EprController extends Controller
     {
         $request = $request->validated();
 
-        $epr->date = $request['date'];
-        $epr->dist = $request['dist'];
-        $epr->tstart = $request['tstart'];
-        $epr->anSco = $request['anSco'];
-
         try
         {
+            $epr->date = $request['date'];
+            $epr->dist = $request['dist'];
+            $epr->tstart = $request['tstart'];
+            $epr->anSco = $request['anSco'];
             $epr->save();
         }
         catch (Exception)

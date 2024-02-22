@@ -11,6 +11,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -38,22 +39,27 @@ class InscrController extends Controller
     /**
      * Affiche le formulaire pour l'inscription à une épreuve spécifique.
      */
-    public function edit(Epr $epr): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    public function edit(Epr $epr): RedirectResponse|\Illuminate\Contracts\Foundation\Application|Factory|View|Application
     {
         $breadcrump = [
             ['label' => 'Inscriptions', 'url' => '/inscr'],
             ['label' => $epr->date, 'url' => '/inscr/' . $epr->pkEpr],
         ];
 
-        $allEtudIn = $epr->etuds()->paginate(10);
+        try {
+            $allEtudIn = $epr->etuds()->paginate(10);
 
-        $allEtudNotIn = Etud::
-        whereNotIn('pkEtud', function ($query) use ($epr) {
-            $query->select('fkEtud')
-                ->from('inscrs')
-                ->leftJoin('etuds', 'inscrs.fkEtud', '=', 'etuds.pkEtud')
-                ->where('fkEpr', $epr->pkEpr);
-        })->get();
+            $allEtudNotIn = Etud::
+            whereNotIn('pkEtud', function ($query) use ($epr) {
+                $query->select('fkEtud')
+                    ->from('inscrs')
+                    ->leftJoin('etuds', 'inscrs.fkEtud', '=', 'etuds.pkEtud')
+                    ->where('fkEpr', $epr->pkEpr);
+            })->get();
+        } catch (\Exception $e) {
+            return redirect()->back()->with('alert', ['type' => 'danger', 'message' => 'Erreur.']);
+        }
+
 
         return view('Inscr.edit', [
             'allEpr' => Epr::all(),
@@ -82,23 +88,24 @@ class InscrController extends Controller
     public function store(InscrRequest $request, Epr $epr)
     {
         $validated = $request->validated();
-        $noDos = DB::table('Inscrs')->max('noDos');
-
-        if (DB::table('Inscrs')->count() == 0) {
-            $noDos = 1001;
-        } else {
-            $noDos = $noDos + 1;
-        }
-
-        $tstart = $epr->tstart ?? $validated['tstart'];
-
-        $epr->etuds()->attach($validated['etud'], ['noDos' => $noDos, 'rw' => $validated['rw'], 'tstart' => $tstart]);
-        $etud = Etud::findOrFail($validated['etud']);
-        $etud->nbIns++;
-        $epr->nbPart++;
 
         try
         {
+            $noDos = DB::table('Inscrs')->max('noDos');
+
+            if (DB::table('Inscrs')->count() == 0) {
+                $noDos = 1001;
+            } else {
+                $noDos = $noDos + 1;
+            }
+
+            $tstart = $epr->tstart ?? $validated['tstart'];
+
+            $epr->etuds()->attach($validated['etud'], ['noDos' => $noDos, 'rw' => $validated['rw'], 'tstart' => $tstart]);
+            $etud = Etud::findOrFail($validated['etud']);
+            $etud->nbIns++;
+            $epr->nbPart++;
+
             $etud->save();
             $epr->save();
         }
@@ -115,19 +122,19 @@ class InscrController extends Controller
      */
     public function destroy(Request $request, Epr $epr)
     {
-        $inscr = $epr->etuds()->find($request->input('etud'));
-
-        if (!is_null($inscr->pivot->tend)) {
-            return redirect()->back()->with('alert', ['type' => 'danger', 'message' => 'Etudiant déjà arrivé']);
-        }
-
-        $etud = Etud::findOrFail($request->input('etud'));
-        $etud->nbIns--;
-        $epr->etuds()->detach($etud);
-        $epr->nbPart--;
-
         try
         {
+            $inscr = $epr->etuds()->find($request->input('etud'));
+
+            if (!is_null($inscr->pivot->tend)) {
+                return redirect()->back()->with('alert', ['type' => 'danger', 'message' => 'Etudiant déjà arrivé']);
+            }
+
+            $etud = Etud::findOrFail($request->input('etud'));
+            $etud->nbIns--;
+            $epr->etuds()->detach($etud);
+            $epr->nbPart--;
+
             $etud->save();
             $epr->save();
         }
@@ -163,35 +170,23 @@ class InscrController extends Controller
      */
     public function update(Request $request, Epr $epr, Etud $etud)
     {
-        $inscr = Inscr::where('fkEpr', $epr->pkEpr)->where('fkEtud', $etud->pkEtud)->first();
-
-        try {
-            $this->authorize('update', $inscr);
-        } catch (\Illuminate\Auth\Access\AuthorizationException $e)
-        {
-            return redirect()->back()->with('alert', ['type' => 'danger', 'message' => 'Impossible de modifié car l\'étudiant a terminé la courseeeee']);
-        }
-
-
         $request->validate([
             'rw' => 'required'
         ]);
 
-        $inscr = $epr->etuds()->find($etud->pkEtud);
+        try {
+            $inscr = Inscr::where('fkEpr', $epr->pkEpr)->where('fkEtud', $etud->pkEtud)->first();
+            $this->authorize('update', $inscr);
+            $inscr = $epr->etuds()->find($etud->pkEtud);
+            $inscr->pivot->rw = $request['rw'];
 
-        $inscr->pivot->rw = $request['rw'];
-
-        if(isset($request['tstart']))
-        {
-            $inscr->pivot->tstart = $request['tstart'];
-        }
-
-        try
-        {
+            if (isset($request['tstart']) && is_null($epr->tstart)) {
+                $inscr->pivot->tstart = $request['tstart'];
+            }
             $inscr->pivot->save();
-        }
-        catch (Exception)
-        {
+        } catch (\Illuminate\Auth\Access\AuthorizationException $e) {
+            return redirect()->back()->with('alert', ['type' => 'danger', 'message' => 'Impossible de modifié car l\'étudiant a terminé la courseeeee']);
+        } catch (Exception) {
             return redirect()->back()->with('alert', ['type' => 'danger', 'message' => 'Erreur lors de la modification de l\'inscription.']);
         }
 
