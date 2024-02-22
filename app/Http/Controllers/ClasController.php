@@ -6,6 +6,7 @@ use App\Http\Requests\ClasRequest;
 use App\Models\Clas;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 /**
  * Contrôleur ClasController
@@ -44,6 +45,11 @@ class ClasController extends Controller
      */
     public function create()
     {
+        $response = Gate::inspect('create', Clas::class);
+
+        var_dump($response);
+        die();
+
         $breadcrump = [
             ['label' => 'Classes', 'url' => '/clas'],
             ['label' => 'Nouvelle classe', 'url' => '/clas/create'],

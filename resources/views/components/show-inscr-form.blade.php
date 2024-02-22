@@ -34,7 +34,7 @@
         <div class="col-6">
             <label for="tstart" class="form-label">Heure de départ</label>
             <input id="tstart" class="form-control" type="time"
-                   value="{{$epr->tstart ?? ""}}" name="tstart" disabled/>
+                   value="{{$epr->tstart ?? Carbon::createFromFormat('H:i:s', $etud->pivot->tstart )->format('H:i')}}" name="tstart" disabled/>
         </div>
         <div class="col-6">
             <label for="dist" class="form-label">Distance</label>
