@@ -7,6 +7,7 @@ use App\Http\Controllers\EprController;
 use App\Http\Controllers\EtudController;
 use App\Http\Controllers\InscrController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\StatsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -70,9 +71,7 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/arriv/{epr}', [ArrivController::class, 'edit']);
     Route::post('/arriv/{epr}', [ArrivController::class, 'store']);
 
-    Route::get('/', function () {
-        return view('welcome');
-    })->name('home');
+    Route::get('/', [StatsController::class, 'index'])->name('home');
 });
 
 

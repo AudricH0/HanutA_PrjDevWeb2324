@@ -25,7 +25,7 @@
                     <a class="nav-link{{ Request::is('inscr*') ? ' active' : '' }}" href="/inscr">Inscriptions</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link{{ Request::is('arriv*') ? ' active' : '' }}" href="/arriv">Arrivées</a>
+                    <a class="nav-link{{ Request::is('arriv*') ? ' active' : '' }}"  href="/arriv">Arrivées</a>
                 </li>
             </ul>
             <ul class="navbar-nav mb-2 mb-lg-0">
@@ -33,7 +33,6 @@
                     <a class="nav-link dropdown-toggle active" href="#" data-bs-toggle="dropdown"
                        aria-expanded="false">{{ Auth::getUser()->login }}</a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#">Gestion utilisateurs</a></li>
                         <li><a class="dropdown-item" href="/logout">Se déconnecter</a></li>
                     </ul>
                 </li>

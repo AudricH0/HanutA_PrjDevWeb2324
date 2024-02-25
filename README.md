@@ -118,6 +118,12 @@ Contrôleur gérant les arrivées des étudiants aux épreuves.
 
 - *app/Http/Controllers/ArrivController.php*
 
+#### StatsController
+
+Contrôleur générant les statistiques.
+
+- *app/Http/Controllers/StatsController.php*
+
 ### Création des Requests
 
 #### AdminRequest
@@ -216,6 +222,10 @@ Composant Blade pour afficher le formulaire de modification des inscriptions à 
 Composant pour afficher le formulaire de détails d'une inscription à une épreuve.
 - *resources/views/components/show-inscr-form.blade.php*
 - *app/View/Components/ShowInscrForm.php*
+
+Composant Blade pour afficher le tableau de détails d'arrivée des etudiants a une course.
+- *resources/views/components/arriv-table.blade.php*
+- *app/View/Components/ArrivTable.php*
 
 ### Création des middlewares
 
