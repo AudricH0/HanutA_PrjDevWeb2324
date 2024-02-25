@@ -40,7 +40,7 @@
                                            name="tstart"
                                            value="{{ $epr->tstart ? $epr->tstart : '00:00' }}"
                                            @if(($epr->tstart)) disabled @endif/>
-                                    <select class="form-control-sm align-middle @error('rw') is-invalid @enderror"
+                                    <select class="bg-white form-control-sm align-middle @error('rw') is-invalid @enderror"
                                             id="rw" name="rw">
                                         <option selected disabled value=""></option>
                                         <option value="R">Run</option>

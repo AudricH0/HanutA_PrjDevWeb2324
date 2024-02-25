@@ -1,0 +1,585 @@
+<!doctype html>
+<html>
+ <head>
+  <title>IntelliJ Markdown Preview</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none';
+script-src 'self';
+style-src 'unsafe-inline';
+img-src file: *;
+connect-src 'none';
+font-src * data: *;
+object-src 'none';
+media-src 'none';
+child-src 'none';">
+  <style>/* Reworked by IntelliJ Team The MIT License (MIT) Copyright (c) JetBrains Adapted from https://github.com/sindresorhus/github-markdown-css The MIT License (MIT) Copyright (c) Sindre Sorhus &lt;sindresorhus@gmail.com&gt; (sindresorhus.com) Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. */ @font-face { font-family: octicons-anchor; src: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAYcAA0AAAAACjQAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAABMAAAABwAAAAca8vGTk9TLzIAAAFMAAAARAAAAFZG1VHVY21hcAAAAZAAAAA+AAABQgAP9AdjdnQgAAAB0AAAAAQAAAAEACICiGdhc3AAAAHUAAAACAAAAAj//wADZ2x5ZgAAAdwAAADRAAABEKyikaNoZWFkAAACsAAAAC0AAAA2AtXoA2hoZWEAAALgAAAAHAAAACQHngNFaG10eAAAAvwAAAAQAAAAEAwAACJsb2NhAAADDAAAAAoAAAAKALIAVG1heHAAAAMYAAAAHwAAACABEAB2bmFtZQAAAzgAAALBAAAFu3I9x/Nwb3N0AAAF/AAAAB0AAAAvaoFvbwAAAAEAAAAAzBdyYwAAAADP2IQvAAAAAM/bz7t4nGNgZGFgnMDAysDB1Ml0hoGBoR9CM75mMGLkYGBgYmBlZsAKAtJcUxgcPsR8iGF2+O/AEMPsznAYKMwIkgMA5REMOXicY2BgYGaAYBkGRgYQsAHyGMF8FgYFIM0ChED+h5j//yEk/3KoSgZGNgYYk4GRCUgwMaACRoZhDwCs7QgGAAAAIgKIAAAAAf//AAJ4nHWMMQrCQBBF/0zWrCCIKUQsTDCL2EXMohYGSSmorScInsRGL2DOYJe0Ntp7BK+gJ1BxF1stZvjz/v8DRghQzEc4kIgKwiAppcA9LtzKLSkdNhKFY3HF4lK69ExKslx7Xa+vPRVS43G98vG1DnkDMIBUgFN0MDXflU8tbaZOUkXUH0+U27RoRpOIyCKjbMCVejwypzJJG4jIwb43rfl6wbwanocrJm9XFYfskuVC5K/TPyczNU7b84CXcbxks1Un6H6tLH9vf2LRnn8Ax7A5WQAAAHicY2BkYGAA4teL1+yI57f5ysDNwgAC529f0kOmWRiYVgEpDgYmEA8AUzEKsQAAAHicY2BkYGB2+O/AEMPCAAJAkpEBFbAAADgKAe0EAAAiAAAAAAQAAAAEAAAAAAAAKgAqACoAiAAAeJxjYGRgYGBhsGFgYgABEMkFhAwM/xn0QAIAD6YBhwB4nI1Ty07cMBS9QwKlQapQW3VXySvEqDCZGbGaHULiIQ1FKgjWMxknMfLEke2A+IJu+wntrt/QbVf9gG75jK577Lg8K1qQPCfnnnt8fX1NRC/pmjrk/zprC+8D7tBy9DHgBXoWfQ44Av8t4Bj4Z8CLtBL9CniJluPXASf0Lm4CXqFX8Q84dOLnMB17N4c7tBo1AS/Qi+hTwBH4rwHHwN8DXqQ30XXAS7QaLwSc0Gn8NuAVWou/gFmnjLrEaEh9GmDdDGgL3B4JsrRPDU2hTOiMSuJUIdKQQayiAth69r6akSSFqIJuA19TrzCIaY8sIoxyrNIrL//pw7A2iMygkX5vDj+G+kuoLdX4GlGK/8Lnlz6/h9MpmoO9rafrz7ILXEHHaAx95s9lsI7AHNMBWEZHULnfAXwG9/ZqdzLI08iuwRloXE8kfhXYAvE23+23DU3t626rbs8/8adv+9DWknsHp3E17oCf+Z48rvEQNZ78paYM38qfk3v/u3l3u3GXN2Dmvmvpf1Srwk3pB/VSsp512bA/GG5i2WJ7wu430yQ5K3nFGiOqgtmSB5pJVSizwaacmUZzZhXLlZTq8qGGFY2YcSkqbth6aW1tRmlaCFs2016m5qn36SbJrqosG4uMV4aP2PHBmB3tjtmgN2izkGQyLWprekbIntJFing32a5rKWCN/SdSoga45EJykyQ7asZvHQ8PTm6cslIpwyeyjbVltNikc2HTR7YKh9LBl9DADC0U/jLcBZDKrMhUBfQBvXRzLtFtjU9eNHKin0x5InTqb8lNpfKv1s1xHzTXRqgKzek/mb7nB8RZTCDhGEX3kK/8Q75AmUM/eLkfA+0Hi908Kx4eNsMgudg5GLdRD7a84npi+YxNr5i5KIbW5izXas7cHXIMAau1OueZhfj+cOcP3P8MNIWLyYOBuxL6DRylJ4cAAAB4nGNgYoAALjDJyIAOWMCiTIxMLDmZedkABtIBygAAAA==) format('woff'); } body { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; font-family: Helvetica, Arial, freesans, sans-serif; font-size: 14px; line-height: 1.6; word-wrap: break-word; margin: 0 2em; } strong { font-weight: bold; } img { border: 0; } input { color: inherit; font: inherit; margin: 0; line-height: normal; } html input[disabled] { cursor: default; } input[type="checkbox"] { box-sizing: border-box; padding: 0; } body * { box-sizing: border-box; } input { font: 13px/1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; } a { text-decoration: none; } a:hover, a:active { text-decoration: underline; } hr { height: 1px; padding: 0; margin: 20px 0; border: 0 none; } hr:before { display: table; content: ""; } hr:after { display: table; clear: both; content: ""; } blockquote { margin: 0; } ul, ol { padding: 0; margin-top: 0; margin-bottom: 0; } ol ol, ul ol { list-style-type: lower-roman; } ul ul ol, ul ol ol, ol ul ol, ol ol ol { list-style-type: lower-alpha; } dd { margin-left: 0; } .octicon { font: normal normal normal 16px/1 octicons-anchor; display: inline-block; text-decoration: none; text-rendering: auto; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } .octicon-link:before { content: '\f05c'; } .markdown-body &gt; *:first-child { margin-top: 0 !important; } .markdown-body &gt; *:last-child { margin-bottom: 0 !important; } .anchor { position: absolute; top: 0; left: 0; display: block; padding-right: 6px; padding-left: 30px; margin-left: -30px; } .anchor:focus { outline: none; } h1, h2, h3, h4, h5, h6 { position: relative; margin-top: 1em; margin-bottom: 16px; font-weight: bold; line-height: 1.4; } h1 .octicon-link, h2 .octicon-link, h3 .octicon-link, h4 .octicon-link, h5 .octicon-link, h6 .octicon-link { display: none; color: #000; vertical-align: middle; } h1:hover .anchor, h2:hover .anchor, h3:hover .anchor, h4:hover .anchor, h5:hover .anchor, h6:hover .anchor { padding-left: 8px; margin-left: -30px; text-decoration: none; } h1:hover .anchor .octicon-link, h2:hover .anchor .octicon-link, h3:hover .anchor .octicon-link, h4:hover .anchor .octicon-link, h5:hover .anchor .octicon-link, h6:hover .anchor .octicon-link { display: inline-block; } h1 { font-size: 2.2em; padding-top: 0.6em; } h1 .anchor { line-height: 1; } h2 { font-size: 1.8em; line-height: 1.2; padding-top: 0.6em; } h2 .anchor { line-height: 1.2; } h3 { font-size: 1.3em; line-height: 1; padding-top: 0.6em; } h3 .anchor { line-height: 1.2; } h4 { font-size: 1em; } h4 .anchor { line-height: 1.2; } h5 { font-size: 1em; } h5 .anchor { line-height: 1.1; } h6 { font-size: 1em; } h6 .anchor { line-height: 1.1; } p, blockquote, ul, ol, dl, table, pre { margin-top: 16px; margin-bottom: 16px; } pre.frontmatter-header { background-color: transparent; margin: 0; padding: 0; } ul, ol { padding-left: 2em; } ul ul, ul ol, ol ol, ol ul { margin-top: 0; margin-bottom: 0; } li &gt; p { margin-top: 0; margin-bottom: 0; } dl { padding: 0; } dl dt { padding: 0; margin-top: 16px; font-size: 1em; font-style: italic; font-weight: bold; } dl dd { padding: 0 16px; margin-bottom: 16px; } blockquote { padding: 10px 10px 10px 16px; border-left: 2px solid; border-radius: 0 3px 3px 0; } blockquote &gt; :first-child { margin-top: 0; } blockquote &gt; :last-child { margin-bottom: 0; } table { display: block; width: 100%; overflow: auto; word-break: normal; border-collapse: collapse; border-spacing: 0; font-size: 1em; } table th { font-weight: bold; } table th, table td { padding: 6px 13px; background: transparent; } table tr { border-top: 1px solid; } img { max-width: 100%; box-sizing: border-box; } code { font: 0.9em "JetBrains Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace; padding: 0.2em 0.4em; margin: 2px; border-radius: 3px; } pre &gt; code { padding: 0; margin: 0; font-size: 100%; word-break: normal; white-space: pre; background: transparent; border: 0; } .highlight { margin-bottom: 16px; } .highlight pre, pre { font: 0.85em "JetBrains Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace; padding: 16px; overflow: auto; line-height: 1.45; border-radius: 3px; } pre code { display: inline; max-width: initial; padding: 0; margin: 0; overflow: initial; line-height: inherit; word-wrap: normal; background-color: transparent; border: 0; } pre code:before, pre code:after { content: normal; } kbd { font: 0.9em "JetBrains Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace; padding: 0.2em 0.4em; margin: 2px; border-radius: 3px; } .task-list-item { list-style-type: none; } .task-list-item + .task-list-item { margin-top: 3px; } .task-list-item input { margin: 0 0.35em 0.25em -0.6em; vertical-align: middle; } :checked + .radio-label { z-index: 1; position: relative; } span.user-del { text-decoration: line-through; } ::-webkit-scrollbar { width: 6px; height: 6px; } ::-webkit-scrollbar-thumb { -webkit-border-radius: 10px; } ::-webkit-scrollbar-track:vertical { -webkit-box-shadow: -1px 0 0 #ededed; } ::-webkit-scrollbar-track { background-color: transparent; } ::-webkit-scrollbar { width: 6px; }</style>
+  <style>body { background-color: rgba(43, 43, 43, 255.0); font-size: 14px !important; } body, p, blockquote, ul, ol, dl, table, pre, code, tr { color: rgba(169, 183, 198, 255.0); } a { color: rgba(88, 157, 246, 255.0); } table td, table th { border: 1px solid rgba(81, 81, 81, 255.0); } hr { background-color: rgba(81, 81, 81, 255.0); } kbd, tr { border: 1px solid rgba(81, 81, 81, 255.0); } h6 { color: rgba(120, 120, 120, 255.0); } blockquote { border-left: 2px solid rgba(88, 157, 246, 0.4); } blockquote, code, pre { background-color: rgba(212, 222, 231, 0.09803921568627451); } ::-webkit-scrollbar { width: 10px; height: 10px; background-color: rgba(0, 0, 0, 0); } ::-webkit-scrollbar-track { background-color: rgba(0, 0, 0, 0); } ::-webkit-scrollbar-track:hover { background-color: rgba(0, 0, 0, 0); } ::-webkit-scrollbar-thumb { background-color: rgba(166, 166, 166, 0.278431); border-radius: 0px; border-width: 1px; border-style: solid; border-color: rgba(0, 0, 0, 0); background-clip: padding-box; outline: 1px solid rgba(56, 56, 56, 0.278431); outline-offset: -1px; } ::-webkit-scrollbar-thumb:hover { background-color: rgba(166, 166, 166, 0.349020); border-radius: 0px; border-width: 1px; border-style: solid; border-color: rgba(0, 0, 0, 0); background-clip: padding-box; outline: 1px solid rgba(56, 56, 56, 0.349020); outline-offset: -1px; } ::-webkit-scrollbar-corner { background-color: rgba(0, 0, 0, 0); } ::-webkit-scrollbar-button { display:none; }</style>
+  <style>/* Copyright 2000-2021 JetBrains s.r.o. and contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. */ .code-fence-highlighter-copy-button { display: flex; position: absolute; float: left; margin-left: -1em; margin-top: -1em; } .code-fence-highlighter-copy-button-icon { max-width: 1em; } .code-fence:hover .code-fence-highlighter-copy-button-icon { /*noinspection CssUnknownTarget*/ content: url("copy-button-copy-icon.png"); } .code-fence:hover .code-fence-highlighter-copy-button:hover .code-fence-highlighter-copy-button-icon { /*noinspection CssUnknownTarget*/ content: url("copy-button-copy-icon-hovered.png"); cursor: pointer; } .code-fence-highlighter-copy-button .tooltiptext { visibility: hidden; width: 120px; background-color: rgba(85, 85, 85, 0.4); color: #fff; text-align: center; border-radius: 6px; padding: 2px 0; position: absolute; font-size: 10px; z-index: 1; top: -4px; left: 120%; opacity: 0; transition: opacity 0.3s; } .code-fence-highlighter-copy-button:hover .tooltiptext { visibility: visible; opacity: 1; }</style>
+  <style>/* Copyright 2000-2021 JetBrains s.r.o. and contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. */ .run-icon &gt; img { max-width: 1em; vertical-align: text-top; margin-right: 0.3em; } .code-block { position: absolute; left: 1em; } .hidden { display: none; }</style>
+  <style>/*! normalize.css v2.1.3 | MIT License | git.io/normalize */ /* ========================================================================== HTML5 display definitions ========================================================================== */ /** * Correct `block` display not defined in IE 8/9. */ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary { display: block; } /** * Correct `inline-block` display not defined in IE 8/9. */ audio, canvas, video { display: inline-block; } /** * Prevent modern browsers from displaying `audio` without controls. * Remove excess height in iOS 5 devices. */ audio:not([controls]) { display: none; height: 0; } /** * Address `[hidden]` styling not present in IE 8/9. * Hide the `template` element in IE, Safari, and Firefox &lt; 22. */ [hidden], template { display: none; } /* ========================================================================== Base ========================================================================== */ /** * 1. Set default font family to sans-serif. * 2. Prevent iOS text size adjust after orientation change, without disabling * user zoom. */ html { font-family: sans-serif; /* 1 */ -ms-text-size-adjust: 100%; /* 2 */ -webkit-text-size-adjust: 100%; /* 2 */ } /** * Remove default margin. */ body { margin: 0; } /* ========================================================================== Links ========================================================================== */ /** * Remove the gray background color from active links in IE 10. */ a { background: transparent; } /** * Address `outline` inconsistency between Chrome and other browsers. */ a:focus { outline: thin dotted; } /** * Improve readability when focused and also mouse hovered in all browsers. */ a:active, a:hover { outline: 0; } /* ========================================================================== Typography ========================================================================== */ /** * Address variable `h1` font-size and margin within `section` and `article` * contexts in Firefox 4+, Safari 5, and Chrome. */ h1 { font-size: 2em; margin: 0.67em 0; } /** * Address styling not present in IE 8/9, Safari 5, and Chrome. */ abbr[title] { border-bottom: 1px dotted; } /** * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome. */ b, strong { font-weight: bold; } /** * Address styling not present in Safari 5 and Chrome. */ dfn { font-style: italic; } /** * Address differences between Firefox and other browsers. */ hr { -moz-box-sizing: content-box; box-sizing: content-box; height: 0; } /** * Address styling not present in IE 8/9. */ mark { background: #ff0; color: #000; } /** * Correct font family set oddly in Safari 5 and Chrome. */ code, kbd, pre, samp { font-family: monospace, serif; font-size: 1em; } /** * Improve readability of pre-formatted text in all browsers. */ pre { white-space: pre-wrap; } /** * Set consistent quote types. */ q { quotes: "\201C" "\201D" "\2018" "\2019"; } /** * Address inconsistent and variable font size in all browsers. */ small { font-size: 80%; } /** * Prevent `sub` and `sup` affecting `line-height` in all browsers. */ sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; } sup { top: -0.5em; } sub { bottom: -0.25em; } /* ========================================================================== Embedded content ========================================================================== */ /** * Remove border when inside `a` element in IE 8/9. */ img { border: 0; } /** * Correct overflow displayed oddly in IE 9. */ svg:not(:root) { overflow: hidden; } /* ========================================================================== Figures ========================================================================== */ /** * Address margin not present in IE 8/9 and Safari 5. */ figure { margin: 0; } /* ========================================================================== Forms ========================================================================== */ /** * Define consistent border, margin, and padding. */ fieldset { border: 1px solid #c0c0c0; margin: 0 2px; padding: 0.35em 0.625em 0.75em; } /** * 1. Correct `color` not being inherited in IE 8/9. * 2. Remove padding so people aren't caught out if they zero out fieldsets. */ legend { border: 0; /* 1 */ padding: 0; /* 2 */ } /** * 1. Correct font family not being inherited in all browsers. * 2. Correct font size not being inherited in all browsers. * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome. */ button, input, select, textarea { font-family: inherit; /* 1 */ font-size: 100%; /* 2 */ margin: 0; /* 3 */ } /** * Address Firefox 4+ setting `line-height` on `input` using `!important` in * the UA stylesheet. */ button, input { line-height: normal; } /** * Address inconsistent `text-transform` inheritance for `button` and `select`. * All other form control elements do not inherit `text-transform` values. * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+. * Correct `select` style inheritance in Firefox 4+ and Opera. */ button, select { text-transform: none; } /** * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio` * and `video` controls. * 2. Correct inability to style clickable `input` types in iOS. * 3. Improve usability and consistency of cursor style between image-type * `input` and others. */ button, html input[type="button"], /* 1 */ input[type="reset"], input[type="submit"] { -webkit-appearance: button; /* 2 */ cursor: pointer; /* 3 */ } /** * Re-set default cursor for disabled elements. */ button[disabled], html input[disabled] { cursor: default; } /** * 1. Address box sizing set to `content-box` in IE 8/9/10. * 2. Remove excess padding in IE 8/9/10. */ input[type="checkbox"], input[type="radio"] { box-sizing: border-box; /* 1 */ padding: 0; /* 2 */ } /** * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome. * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome * (include `-moz` to future-proof). */ input[type="search"] { -webkit-appearance: textfield; /* 1 */ -moz-box-sizing: content-box; -webkit-box-sizing: content-box; /* 2 */ box-sizing: content-box; } /** * Remove inner padding and search cancel button in Safari 5 and Chrome * on OS X. */ input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration { -webkit-appearance: none; } /** * Remove inner padding and border in Firefox 4+. */ button::-moz-focus-inner, input::-moz-focus-inner { border: 0; padding: 0; } /** * 1. Remove default vertical scrollbar in IE 8/9. * 2. Improve readability and alignment in all browsers. */ textarea { overflow: auto; /* 1 */ vertical-align: top; /* 2 */ } /* ========================================================================== Tables ========================================================================== */ /** * Remove most spacing between table cells. */ table { border-collapse: collapse; border-spacing: 0; } .go-top { position: fixed; bottom: 2em; right: 2em; text-decoration: none; background-color: #E0E0E0; font-size: 12px; padding: 1em; display: inline; } /* Github css */ html,body{ margin: auto; padding-right: 1em; padding-left: 1em; max-width: 44em; color:black;}*:not('#mkdbuttons'){margin:0;padding:0}body{font:13.34px helvetica,arial,freesans,clean,sans-serif;-webkit-font-smoothing:subpixel-antialiased;line-height:1.4;padding:3px;background:#fff;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px}p{margin:1em 0}a{color:#4183c4;text-decoration:none}body{background-color:#fff;padding:30px;margin:15px;font-size:14px;line-height:1.6}body&gt;*:first-child{margin-top:0!important}body&gt;*:last-child{margin-bottom:0!important}@media screen{body{box-shadow:0 0 0 1px #cacaca,0 0 0 4px #eee}}h1,h2,h3,h4,h5,h6{margin:20px 0 10px;padding:0;font-weight:bold;-webkit-font-smoothing:subpixel-antialiased;cursor:text}h1{font-size:28px;color:#000}h2{font-size:24px;border-bottom:1px solid #ccc;color:#000}h3{font-size:18px;color:#333}h4{font-size:16px;color:#333}h5{font-size:14px;color:#333}h6{color:#777;font-size:14px}p,blockquote,table,pre{margin:15px 0}ul{padding-left:30px}ol{padding-left:30px}ol li ul:first-of-type{margin-top:0}hr{background:transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;border:0 none;color:#ccc;height:4px;padding:0}body&gt;h2:first-child{margin-top:0;padding-top:0}body&gt;h1:first-child{margin-top:0;padding-top:0}body&gt;h1:first-child+h2{margin-top:0;padding-top:0}body&gt;h3:first-child,body&gt;h4:first-child,body&gt;h5:first-child,body&gt;h6:first-child{margin-top:0;padding-top:0}a:first-child h1,a:first-child h2,a:first-child h3,a:first-child h4,a:first-child h5,a:first-child h6{margin-top:0;padding-top:0}h1+p,h2+p,h3+p,h4+p,h5+p,h6+p,ul li&gt;:first-child,ol li&gt;:first-child{margin-top:0}dl{padding:0}dl dt{font-size:14px;font-weight:bold;font-style:italic;padding:0;margin:15px 0 5px}dl dt:first-child{padding:0}dl dt&gt;:first-child{margin-top:0}dl dt&gt;:last-child{margin-bottom:0}dl dd{margin:0 0 15px;padding:0 15px}dl dd&gt;:first-child{margin-top:0}dl dd&gt;:last-child{margin-bottom:0}blockquote{border-left:4px solid #DDD;padding:0 15px;color:#777}blockquote&gt;:first-child{margin-top:0}blockquote&gt;:last-child{margin-bottom:0}table{border-collapse:collapse;border-spacing:0;font-size:100%;font:inherit}table th{font-weight:bold;border:1px solid #ccc;padding:6px 13px}table td{border:1px solid #ccc;padding:6px 13px}table tr{border-top:1px solid #ccc;background-color:#fff}table tr:nth-child(2n){background-color:#f8f8f8}img{max-width:100%}code,tt{margin:0 2px;padding:0 5px;white-space:nowrap;border:1px solid #eaeaea;background-color:#f8f8f8;border-radius:3px;font-family:Consolas,'Liberation Mono',Courier,monospace;font-size:12px;color:#333}pre&gt;code{margin:0;padding:0;white-space:pre;border:0;background:transparent}.highlight pre{background-color:#f8f8f8;border:1px solid #ccc;font-size:13px;line-height:19px;overflow:auto;padding:6px 10px;border-radius:3px}pre{background-color:#f8f8f8;border:1px solid #ccc;font-size:13px;line-height:19px;overflow:auto;padding:6px 10px;border-radius:3px}pre code,pre tt{background-color:transparent;border:0}.poetry pre{font-family:Georgia,Garamond,serif!important;font-style:italic;font-size:110%!important;line-height:1.6em;display:block;margin-left:1em}.poetry pre code{font-family:Georgia,Garamond,serif!important;word-break:break-all;word-break:break-word;-webkit-hyphens:auto;-moz-hyphens:auto;hyphens:auto;white-space:pre-wrap}sup,sub,a.footnote{font-size:1.4ex;height:0;line-height:1;vertical-align:super;position:relative}sub{vertical-align:sub;top:-1px}@media print{body{background:#fff}img,pre,blockquote,table,figure{page-break-inside:avoid}body{background:#fff;border:0}code{background-color:#fff;color:#333!important;padding:0 .2em;border:1px solid #dedede}pre{background:#fff}pre code{background-color:white!important;overflow:visible}}@media screen{body.inverted{color:#eee!important;border-color:#555;box-shadow:none}.inverted body,.inverted hr .inverted p,.inverted td,.inverted li,.inverted h1,.inverted h2,.inverted h3,.inverted h4,.inverted h5,.inverted h6,.inverted th,.inverted .math,.inverted caption,.inverted dd,.inverted dt,.inverted blockquote{color:#eee!important;border-color:#555;box-shadow:none}.inverted td,.inverted th{background:#333}.inverted h2{border-color:#555}.inverted hr{border-color:#777;border-width:1px!important}::selection{background:rgba(157,193,200,0.5)}h1::selection{background-color:rgba(45,156,208,0.3)}h2::selection{background-color:rgba(90,182,224,0.3)}h3::selection,h4::selection,h5::selection,h6::selection,li::selection,ol::selection{background-color:rgba(133,201,232,0.3)}code::selection{background-color:rgba(0,0,0,0.7);color:#eee}code span::selection{background-color:rgba(0,0,0,0.7)!important;color:#eee!important}a::selection{background-color:rgba(255,230,102,0.2)}.inverted a::selection{background-color:rgba(255,230,102,0.6)}td::selection,th::selection,caption::selection{background-color:rgba(180,237,95,0.5)}.inverted{background:#0b2531;background:#252a2a}.inverted body{background:#252a2a}.inverted a{color:#acd1d5}}.highlight .c{color:#998;font-style:italic}.highlight .err{color:#a61717;background-color:#e3d2d2}.highlight .k,.highlight .o{font-weight:bold}.highlight .cm{color:#998;font-style:italic}.highlight .cp{color:#999;font-weight:bold}.highlight .c1{color:#998;font-style:italic}.highlight .cs{color:#999;font-weight:bold;font-style:italic}.highlight .gd{color:#000;background-color:#fdd}.highlight .gd .x{color:#000;background-color:#faa}.highlight .ge{font-style:italic}.highlight .gr{color:#a00}.highlight .gh{color:#999}.highlight .gi{color:#000;background-color:#dfd}.highlight .gi .x{color:#000;background-color:#afa}.highlight .go{color:#888}.highlight .gp{color:#555}.highlight .gs{font-weight:bold}.highlight .gu{color:#800080;font-weight:bold}.highlight .gt{color:#a00}.highlight .kc,.highlight .kd,.highlight .kn,.highlight .kp,.highlight .kr{font-weight:bold}.highlight .kt{color:#458;font-weight:bold}.highlight .m{color:#099}.highlight .s{color:#d14}.highlight .na{color:#008080}.highlight .nb{color:#0086b3}.highlight .nc{color:#458;font-weight:bold}.highlight .no{color:#008080}.highlight .ni{color:#800080}.highlight .ne,.highlight .nf{color:#900;font-weight:bold}.highlight .nn{color:#555}.highlight .nt{color:#000080}.highlight .nv{color:#008080}.highlight .ow{font-weight:bold}.highlight .w{color:#bbb}.highlight .mf,.highlight .mh,.highlight .mi,.highlight .mo{color:#099}.highlight .sb,.highlight .sc,.highlight .sd,.highlight .s2,.highlight .se,.highlight .sh,.highlight .si,.highlight .sx{color:#d14}.highlight .sr{color:#009926}.highlight .s1{color:#d14}.highlight .ss{color:#990073}.highlight .bp{color:#999}.highlight .vc,.highlight .vg,.highlight .vi{color:#008080}.highlight .il{color:#099}.highlight .gc{color:#999;background-color:#eaf2f5}.type-csharp .highlight .k,.type-csharp .highlight .kt{color:#00F}.type-csharp .highlight .nf{color:#000;font-weight:normal}.type-csharp .highlight .nc{color:#2b91af}.type-csharp .highlight .nn{color:#000}.type-csharp .highlight .s,.type-csharp .highlight .sc{color:#a31515}</style>
+ </head>
+ <body>
+  <div md-src-pos="0..20433">
+   <h1 id="projet-de-développement-web---eafc-20232024---hanut-audric" md-src-pos="0..61">Projet de développement Web - EAFC 2023/2024 - Hanut Audric</h1>
+   <ul md-src-pos="64..1324">
+    <li md-src-pos="64..1324"><a href="#projet-de-d%C3%A9veloppement-web---eafc-20232024---hanut-audric" md-src-pos="66..188">Projet de développement Web - EAFC 2023/2024 - Hanut Audric</a>
+     <ul md-src-pos="191..1324">
+      <li md-src-pos="191..273"><a href="#1-d%C3%A9ploiement" md-src-pos="193..225">1) Déploiement</a>
+       <ul md-src-pos="230..273">
+        <li md-src-pos="230..273"><a href="#11-serveur-wamp64" md-src-pos="232..273">1.1) Serveur Wamp64</a></li>
+       </ul></li>
+      <li md-src-pos="276..1140"><a href="#2-documentation" md-src-pos="278..314">2) Documentation</a>
+       <ul md-src-pos="319..1140">
+        <li md-src-pos="319..447"><a href="#21-cr%C3%A9ation-de-la-database" md-src-pos="321..380">2.1) Création de la database</a>
+         <ul md-src-pos="387..447">
+          <li md-src-pos="387..447"><a href="#211-sch%C3%A9ma-de-la-database" md-src-pos="389..447">2.1.1) Schéma de la database</a></li>
+         </ul></li>
+        <li md-src-pos="452..857"><a href="#22-utilisation-du-pattern-de-conception-mvc" md-src-pos="454..547">2.2) Utilisation du pattern de conception MVC</a>
+         <ul md-src-pos="554..857">
+          <li md-src-pos="554..618"><a href="#221-m---cr%C3%A9ation-des-models" md-src-pos="556..618">2.2.1) M - Création des Models</a></li>
+          <li md-src-pos="625..776"><a href="#222-v---cr%C3%A9ation-des-vues" md-src-pos="627..686">2.2.2) V - Création des vues</a>
+           <ul md-src-pos="695..776">
+            <li md-src-pos="695..716"><a href="#layouts" md-src-pos="697..716">Layouts</a></li>
+            <li md-src-pos="725..740"><a href="#vues" md-src-pos="727..740">Vues</a></li>
+            <li md-src-pos="749..776"><a href="#components" md-src-pos="751..776">Components</a></li>
+           </ul></li>
+          <li md-src-pos="783..857"><a href="#223-c---cr%C3%A9ation-des-controllers" md-src-pos="785..857">2.2.3) C - Création des Controllers</a></li>
+         </ul></li>
+        <li md-src-pos="862..1140"><a href="#23-autres-outils-laravel-utilis%C3%A9s" md-src-pos="864..937">2.3) Autres outils Laravel utilisés</a>
+         <ul md-src-pos="944..1140">
+          <li md-src-pos="944..1004"><a href="#231-cr%C3%A9ation-des-requests" md-src-pos="946..1004">2.3.1) Création des Requests</a></li>
+          <li md-src-pos="1011..1077"><a href="#232-cr%C3%A9ation-des-middlewares" md-src-pos="1013..1077">2.3.2) Création des middlewares</a></li>
+          <li md-src-pos="1084..1140"><a href="#233-cr%C3%A9ation-des-policy" md-src-pos="1086..1140">2.3.3) Création des Policy</a></li>
+         </ul></li>
+       </ul></li>
+      <li md-src-pos="1143..1324"><a href="#3-mode-demploi-utilisateur-sommaire" md-src-pos="1145..1222">3) Mode d’emploi utilisateur sommaire</a>
+       <ul md-src-pos="1227..1324">
+        <li md-src-pos="1227..1282"><a href="#31-premi%C3%A8re-utilisation" md-src-pos="1229..1282">3.1) Première utilisation</a></li>
+        <li md-src-pos="1287..1324"><a href="#32-utilisation" md-src-pos="1289..1324">3.2) Utilisation</a></li>
+       </ul></li>
+     </ul></li>
+   </ul>
+   <h2 id="1-déploiement" md-src-pos="1340..1357">1) Déploiement</h2>
+   <h3 id="11-serveur-wamp64" md-src-pos="1359..1382">1.1) Serveur Wamp64</h3>
+   <p md-src-pos="1384..1450"><span md-src-pos="1384..1389">1.1.1</span>) <span md-src-pos="1391..1448">Placer le code source du site web dans le dossier suivant</span> :</p>
+   <pre><code md-src-pos="1452..1499">```
+C:\wamp64\www\*NomDuProjet*
+```
+</code></pre>
+   <p md-src-pos="1501..1545"><span md-src-pos="1501..1506">1.1.2</span>) <span md-src-pos="1508..1518">Création d</span>'<span md-src-pos="1519..1545">un virtual host sur Wamp64</span></p>
+   <p md-src-pos="1547..1584"><img src="http://localhost:63342/markdownPreview/1731934825/fileSchemeResource/97c048868adda37c8b61328112d00679-VirtualHost.png?_ijt=6mtv24e69nnl22rpmdnfb516b3" alt="imgpng" __idea-generated="true" md-src-pos="1550..1584" data-original-src="file:/C:/wamp64/www/HanutA_PrjDevWeb2324/ReadMe/VirtualHost.png"></p>
+   <h2 id="2-documentation" md-src-pos="1586..1605">2) Documentation</h2>
+   <h3 id="21-création-de-la-database" md-src-pos="1607..1639">2.1) Création de la database</h3>
+   <p md-src-pos="1641..1714"><span md-src-pos="1641..1657">Utilisation de l</span>'<span md-src-pos="1658..1714">outil de migration de Laravel pour la création de la DB.</span></p>
+   <ul md-src-pos="1716..1744">
+    <li md-src-pos="1716..1744">Fichiers sources migration</li>
+   </ul>
+   <table md-src-pos="1746..2277">
+    <thead>
+     <tr md-src-pos="1746..1821">
+      <th md-src-pos="1747..1754">Table</th>
+      <th md-src-pos="1755..1820">Fichier source</th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr md-src-pos="1898..1973">
+      <td md-src-pos="1899..1906">Users</td>
+      <td md-src-pos="1907..1972"><em md-src-pos="1908..1970">database/migrations/2014_10_12_000000_create_users_table.php</em></td>
+     </tr>
+     <tr class="intellij-row-even" md-src-pos="1974..2049">
+      <td md-src-pos="1975..1982">Class</td>
+      <td md-src-pos="1983..2048"><em md-src-pos="1984..2046">database/migrations/2014_10_12_000000_create_class_table.php</em></td>
+     </tr>
+     <tr md-src-pos="2050..2125">
+      <td md-src-pos="2051..2058">Class</td>
+      <td md-src-pos="2059..2124"><em md-src-pos="2060..2122">database/migrations/2014_10_12_000000_create_etuds_table.php</em></td>
+     </tr>
+     <tr class="intellij-row-even" md-src-pos="2126..2201">
+      <td md-src-pos="2127..2134">Class</td>
+      <td md-src-pos="2135..2200"><em md-src-pos="2136..2197">database/migrations/2014_10_12_000000_create_eprs_table.php</em></td>
+     </tr>
+     <tr md-src-pos="2202..2277">
+      <td md-src-pos="2203..2210">Class</td>
+      <td md-src-pos="2211..2276"><em md-src-pos="2212..2275">database/migrations/2014_10_12_000000_create_inscrs_table.php</em></td>
+     </tr>
+    </tbody>
+   </table>
+   <ul md-src-pos="2279..2594">
+    <li md-src-pos="2279..2594">Configuration de la DB dans le projet
+     <ul md-src-pos="2321..2594">
+      <li md-src-pos="2321..2374"><em md-src-pos="2325..2331">.env</em>
+       <ul md-src-pos="2338..2374">
+        <li md-src-pos="2338..2374">Configuration de l'accès a la DB</li>
+       </ul></li>
+      <li md-src-pos="2377..2516"><em md-src-pos="2381..2419">app/Providers/AppServiceProvider.php</em>
+       <ul md-src-pos="2426..2516">
+        <li md-src-pos="2426..2516">Définition de la longueur par défaut des chaînes de caractères dans la base de données</li>
+       </ul></li>
+      <li md-src-pos="2519..2594"><em md-src-pos="2523..2544">config/database.php</em>
+       <ul md-src-pos="2551..2594">
+        <li md-src-pos="2551..2594">Définition de moteur de stockage InnoDB</li>
+       </ul></li>
+     </ul></li>
+   </ul>
+   <h4 id="211-schéma-de-la-database" md-src-pos="2596..2629">2.1.1) Schéma de la database</h4>
+   <p md-src-pos="2631..2662"><img src="http://localhost:63342/markdownPreview/1731934825/fileSchemeResource/e5d74b3e6d22a944a92942335b303622-Database.png?_ijt=6mtv24e69nnl22rpmdnfb516b3" alt="imgpng" __idea-generated="true" md-src-pos="2631..2662" data-original-src="file:/C:/wamp64/www/HanutA_PrjDevWeb2324/ReadMe/Database.png"></p>
+   <ul md-src-pos="2664..3204">
+    <li md-src-pos="2664..3204">Par rapport à l'ébauche de schéma relationnel de la DB de départ, quelque modifications ont été apportées :
+     <ul md-src-pos="2776..3204">
+      <li md-src-pos="2776..2999">Ajout des colonnes created_at et updated_at ; attributs généré par défaut par laravel que j'ai choisi de laisser, si jamais nous décidions des triers des informations sur leur date de création et/ou de mise à jour</li>
+      <li md-src-pos="3002..3204">Suppresion de la clé primaire PkInscr de la table Inscrs : J'ai choisi d'utilisé une clé primaire composite de [fkEtud;fkEpr] afin de mieux controler la duplication de données dans cette table</li>
+     </ul></li>
+   </ul>
+   <h3 id="22-utilisation-du-pattern-de-conception-mvc" md-src-pos="3206..3255">2.2) Utilisation du pattern de conception MVC</h3>
+   <p md-src-pos="3257..3424"><span md-src-pos="3257..3301">Une documentation plus complète des Classes,</span> <span md-src-pos="3302..3360">attributs et méthodes est implémentée dans le code source.</span> <span md-src-pos="3361..3424">Voici cependant une documentation minimale expliquant le projet</span></p>
+   <h4 id="221-m---création-des-models" md-src-pos="3426..3461">2.2.1) M - Création des Models</h4>
+   <table md-src-pos="3463..4218">
+    <thead>
+     <tr md-src-pos="3463..3570">
+      <th md-src-pos="3464..3471">Model</th>
+      <th md-src-pos="3472..3544">Description</th>
+      <th md-src-pos="3545..3569">Fichier source</th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr md-src-pos="3679..3786">
+      <td md-src-pos="3680..3687">Users</td>
+      <td md-src-pos="3688..3760">Représentation d'un utilisateur de notre Site Web.</td>
+      <td md-src-pos="3761..3785"><em md-src-pos="3762..3783">app/Models/User.php</em></td>
+     </tr>
+     <tr class="intellij-row-even" md-src-pos="3787..3894">
+      <td md-src-pos="3788..3795">Clas</td>
+      <td md-src-pos="3796..3868">Ce modèle représente une classe dans l'application.</td>
+      <td md-src-pos="3869..3893"><em md-src-pos="3870..3891">app/Models/Clas.php</em></td>
+     </tr>
+     <tr md-src-pos="3895..4002">
+      <td md-src-pos="3896..3903">Etud</td>
+      <td md-src-pos="3904..3976">Ce modèle représente un étudiant dans l'application.</td>
+      <td md-src-pos="3977..4001"><em md-src-pos="3978..3999">app/Models/Etud.php</em></td>
+     </tr>
+     <tr class="intellij-row-even" md-src-pos="4003..4110">
+      <td md-src-pos="4004..4011">Epr</td>
+      <td md-src-pos="4012..4084">Représente une épreuve.</td>
+      <td md-src-pos="4085..4109"><em md-src-pos="4086..4106">app/Models/Epr.php</em></td>
+     </tr>
+     <tr md-src-pos="4111..4218">
+      <td md-src-pos="4112..4119">Inscr</td>
+      <td md-src-pos="4120..4192">Représente le modèle d'une inscription à une épreuve pour un étudiant.</td>
+      <td md-src-pos="4193..4217"><em md-src-pos="4194..4216">app/Models/Inscr.php</em></td>
+     </tr>
+    </tbody>
+   </table>
+   <h4 id="222-v---création-des-vues" md-src-pos="4220..4254">2.2.2) V - Création des vues</h4>
+   <h5 id="layouts" md-src-pos="4256..4269">Layouts</h5>
+   <p md-src-pos="4271..4301"><span md-src-pos="4271..4301">Layout de base de ma page HTML</span></p>
+   <ul md-src-pos="4303..4348">
+    <li md-src-pos="4303..4348"><em md-src-pos="4305..4348">resources/views/Layouts/default.blade.php</em></li>
+   </ul>
+   <p md-src-pos="4350..4499"><span md-src-pos="4350..4404">Un autre layout qui implémente le default est utilisé,</span> <span md-src-pos="4405..4468">celui-ci inclus la navbar et sera donc utilisé sur les pages ou</span> <span md-src-pos="4469..4470">l</span>'<span md-src-pos="4471..4499">utilisateur est authentifié.</span></p>
+   <ul md-src-pos="4501..4558">
+    <li md-src-pos="4501..4558"><em md-src-pos="4503..4558">resources/views/Layouts/default_with_navbar.blade.php</em></li>
+   </ul>
+   <h5 id="vues" md-src-pos="4560..4570">Vues</h5>
+   <table md-src-pos="4572..7998">
+    <thead>
+     <tr md-src-pos="4572..4720">
+      <th md-src-pos="4573..4589">Vue</th>
+      <th md-src-pos="4590..4674">Description</th>
+      <th md-src-pos="4675..4719">Fichier source</th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr md-src-pos="4870..5018">
+      <td md-src-pos="4871..4887">Admin.create</td>
+      <td md-src-pos="4888..4972">Vue du formulaire de création de l'administrateur</td>
+      <td md-src-pos="4973..5017"><em md-src-pos="4974..5014">resources/views/Admin/create.blade.php</em></td>
+     </tr>
+     <tr class="intellij-row-even" md-src-pos="5019..5167">
+      <td md-src-pos="5020..5036">Session.create</td>
+      <td md-src-pos="5037..5121">Vue du formulaire de connexion</td>
+      <td md-src-pos="5122..5166"><em md-src-pos="5123..5165">resources/views/Session/create.blade.php</em></td>
+     </tr>
+     <tr md-src-pos="5168..5316">
+      <td md-src-pos="5169..5185">Session.delete</td>
+      <td md-src-pos="5186..5270">Vue de confirmation de déconnexion</td>
+      <td md-src-pos="5271..5315"><em md-src-pos="5272..5314">resources/views/Session/delete.blade.php</em></td>
+     </tr>
+     <tr class="intellij-row-even" md-src-pos="5317..5465">
+      <td md-src-pos="5318..5334">Welcome</td>
+      <td md-src-pos="5335..5419">Vue de la page d'accueil, affichant les statistiques</td>
+      <td md-src-pos="5420..5464"><em md-src-pos="5421..5456">resources/views/welcome.blade.php</em></td>
+     </tr>
+     <tr md-src-pos="5466..5614">
+      <td md-src-pos="5467..5483">Clas.create</td>
+      <td md-src-pos="5484..5568">Vue du formulaire de création d'une classe</td>
+      <td md-src-pos="5569..5613"><em md-src-pos="5570..5609">resources/views/Clas/create.blade.php</em></td>
+     </tr>
+     <tr class="intellij-row-even" md-src-pos="5615..5763">
+      <td md-src-pos="5616..5632">Clas.delete</td>
+      <td md-src-pos="5633..5717">Vue du formulaire de suppression d'une classe</td>
+      <td md-src-pos="5718..5762"><em md-src-pos="5719..5758">resources/views/Clas/delete.blade.php</em></td>
+     </tr>
+     <tr md-src-pos="5764..5912">
+      <td md-src-pos="5765..5781">Clas.edit</td>
+      <td md-src-pos="5782..5866">Vue du formulaire d'édition d'une classe</td>
+      <td md-src-pos="5867..5911"><em md-src-pos="5868..5905">resources/views/Clas/edit.blade.php</em></td>
+     </tr>
+     <tr class="intellij-row-even" md-src-pos="5913..6061">
+      <td md-src-pos="5914..5930">Clas.index</td>
+      <td md-src-pos="5931..6015">Vue de l'index reprenants les infos de toutes les classes encodées</td>
+      <td md-src-pos="6016..6060"><em md-src-pos="6017..6055">resources/views/Clas/index.blade.php</em></td>
+     </tr>
+     <tr md-src-pos="6062..6210">
+      <td md-src-pos="6063..6079">Etud.create</td>
+      <td md-src-pos="6080..6164">Vue du formulaire de création d'un étudiant</td>
+      <td md-src-pos="6165..6209"><em md-src-pos="6166..6205">resources/views/Etud/create.blade.php</em></td>
+     </tr>
+     <tr class="intellij-row-even" md-src-pos="6211..6359">
+      <td md-src-pos="6212..6228">Etud.delete</td>
+      <td md-src-pos="6229..6313">Vue du formulaire de suppression d'un étudiant</td>
+      <td md-src-pos="6314..6358"><em md-src-pos="6315..6354">resources/views/Etud/delete.blade.php</em></td>
+     </tr>
+     <tr md-src-pos="6360..6508">
+      <td md-src-pos="6361..6377">Etud.edit</td>
+      <td md-src-pos="6378..6462">Vue du formulaire d'édition d'un étudiant</td>
+      <td md-src-pos="6463..6507"><em md-src-pos="6464..6501">resources/views/Etud/edit.blade.php</em></td>
+     </tr>
+     <tr class="intellij-row-even" md-src-pos="6509..6657">
+      <td md-src-pos="6510..6526">Etud.index</td>
+      <td md-src-pos="6527..6611">Vue de l'index reprenants les infos de toutes les étudiants encodées</td>
+      <td md-src-pos="6612..6656"><em md-src-pos="6613..6651">resources/views/Etud/index.blade.php</em></td>
+     </tr>
+     <tr md-src-pos="6658..6806">
+      <td md-src-pos="6659..6675">Epr.create</td>
+      <td md-src-pos="6676..6760">Vue du formulaire de création d'une épreuveEpr</td>
+      <td md-src-pos="6761..6805"><em md-src-pos="6762..6800">resources/views/Epr/create.blade.php</em></td>
+     </tr>
+     <tr class="intellij-row-even" md-src-pos="6807..6955">
+      <td md-src-pos="6808..6824">Epr.delete</td>
+      <td md-src-pos="6825..6909">Vue du formulaire de suppression d'une épreuve</td>
+      <td md-src-pos="6910..6954"><em md-src-pos="6911..6949">resources/views/Epr/delete.blade.php</em></td>
+     </tr>
+     <tr md-src-pos="6956..7104">
+      <td md-src-pos="6957..6973">Epr.edit</td>
+      <td md-src-pos="6974..7058">Vue du formulaire d'édition d'une épreuve</td>
+      <td md-src-pos="7059..7103"><em md-src-pos="7060..7096">resources/views/Epr/edit.blade.php</em></td>
+     </tr>
+     <tr class="intellij-row-even" md-src-pos="7105..7253">
+      <td md-src-pos="7106..7122">Epr.index</td>
+      <td md-src-pos="7123..7207">Vue de l'index reprenants les infos de toutes les épreuves encodées</td>
+      <td md-src-pos="7208..7252"><em md-src-pos="7209..7246">resources/views/Epr/index.blade.php</em></td>
+     </tr>
+     <tr md-src-pos="7254..7402">
+      <td md-src-pos="7255..7271">Inscr.show</td>
+      <td md-src-pos="7272..7356">Vue des détails d'une inscription à une épreuve.</td>
+      <td md-src-pos="7357..7401"><em md-src-pos="7358..7396">resources/views/Inscr/show.blade.php</em></td>
+     </tr>
+     <tr class="intellij-row-even" md-src-pos="7403..7551">
+      <td md-src-pos="7404..7420">Inscr.edit</td>
+      <td md-src-pos="7421..7505">Vue du formulaire pour l'inscription à une épreuve spécifique.</td>
+      <td md-src-pos="7506..7550"><em md-src-pos="7507..7545">resources/views/Inscr/edit.blade.php</em></td>
+     </tr>
+     <tr md-src-pos="7552..7700">
+      <td md-src-pos="7553..7569">Inscr.index</td>
+      <td md-src-pos="7570..7654">Vue de l'index permettant de choisir l'épreuve des inscriptions a afficher</td>
+      <td md-src-pos="7655..7699"><em md-src-pos="7656..7695">resources/views/Inscr/index.blade.php</em></td>
+     </tr>
+     <tr class="intellij-row-even" md-src-pos="7701..7849">
+      <td md-src-pos="7702..7718">Arriv.edit</td>
+      <td md-src-pos="7719..7803">Vue du formulaire permettant d'encodée les arrivées</td>
+      <td md-src-pos="7804..7848"><em md-src-pos="7805..7843">resources/views/Arriv/edit.blade.php</em></td>
+     </tr>
+     <tr md-src-pos="7850..7998">
+      <td md-src-pos="7851..7867">Arriv.index</td>
+      <td md-src-pos="7868..7952">Vue de l'index permettant de choisir l'épreuve pour laquelle encodées les arrivées</td>
+      <td md-src-pos="7953..7997"><em md-src-pos="7954..7993">resources/views/Arriv/index.blade.php</em></td>
+     </tr>
+    </tbody>
+   </table>
+   <h5 id="components" md-src-pos="8000..8016">Components</h5>
+   <p md-src-pos="8018..8115"><span md-src-pos="8018..8056">Utilisation de components blade afin d</span>'<span md-src-pos="8057..8115">utiliser la réutilisabilité de ceux-ci dans plusieurs vues</span></p>
+   <table md-src-pos="8117..12388">
+    <thead>
+     <tr md-src-pos="8117..8383">
+      <th md-src-pos="8118..8133">Component</th>
+      <th md-src-pos="8134..8278">Description</th>
+      <th md-src-pos="8279..8382">Fichier source</th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr md-src-pos="8651..8917">
+      <td md-src-pos="8652..8667">FlashMessage</td>
+      <td md-src-pos="8668..8812">Composant utilisé pour afficher un message éphémère à l'utilisateur. Il peut être utilisé pour afficher des messages d'alerte, de succès, etc.</td>
+      <td md-src-pos="8813..8916">- <em md-src-pos="8816..8868">resources/views/components/flash-message.blade.php</em><br>
+       - <em md-src-pos="8874..8912">app/View/Components/FlashMessage.php</em></td>
+     </tr>
+     <tr class="intellij-row-even" md-src-pos="8918..9184">
+      <td md-src-pos="8919..8934">Breadcrumb</td>
+      <td md-src-pos="8935..9079">Composant utilisé pour afficher une barre de navigation en utilisant des éléments de navigation spécifiés.</td>
+      <td md-src-pos="9080..9183">- <em md-src-pos="9083..9132">resources/views/components/breadcrumb.blade.php</em><br>
+       - <em md-src-pos="9138..9174">app/View/Components/Breadcrumb.php</em></td>
+     </tr>
+     <tr md-src-pos="9185..9451">
+      <td md-src-pos="9186..9201">ClasTable</td>
+      <td md-src-pos="9202..9346">Composant Blade pour afficher une table de classes.</td>
+      <td md-src-pos="9347..9450">- <em md-src-pos="9350..9399">resources/views/components/clas-table.blade.php</em><br>
+       - <em md-src-pos="9405..9440">app/View/Components/ClasTable.php</em></td>
+     </tr>
+     <tr class="intellij-row-even" md-src-pos="9452..9718">
+      <td md-src-pos="9453..9468">Search</td>
+      <td md-src-pos="9469..9613">Composant Blade pour une barre de recherche.</td>
+      <td md-src-pos="9614..9717">- <em md-src-pos="9617..9662">resources/views/components/search.blade.php</em><br>
+       - <em md-src-pos="9668..9700">app/View/Components/Search.php</em></td>
+     </tr>
+     <tr md-src-pos="9719..9985">
+      <td md-src-pos="9720..9735">ClasForm</td>
+      <td md-src-pos="9736..9880">Composant Blade pour afficher un formulaire de classe.</td>
+      <td md-src-pos="9881..9984">- <em md-src-pos="9884..9932">resources/views/components/clas-form.blade.php</em><br>
+       - <em md-src-pos="9938..9972">app/View/Components/ClasForm.php</em></td>
+     </tr>
+     <tr class="intellij-row-even" md-src-pos="9986..10252">
+      <td md-src-pos="9987..10002">DeleteForm</td>
+      <td md-src-pos="10003..10147">Composant Blade pour afficher un formulaire de suppression.</td>
+      <td md-src-pos="10148..10251">- <em md-src-pos="10151..10201">resources/views/components/delete-form.blade.php</em><br>
+       - <em md-src-pos="10207..10243">app/View/Components/DeleteForm.php</em></td>
+     </tr>
+     <tr md-src-pos="10253..10519">
+      <td md-src-pos="10254..10269">EtudTable</td>
+      <td md-src-pos="10270..10414">Composant Blade pour afficher un tableau d'étudiants.</td>
+      <td md-src-pos="10415..10518">- <em md-src-pos="10418..10467">resources/views/components/etud-table.blade.php</em><br>
+       - <em md-src-pos="10473..10508">app/View/Components/EtudTable.php</em></td>
+     </tr>
+     <tr class="intellij-row-even" md-src-pos="10520..10786">
+      <td md-src-pos="10521..10536">EtudForm</td>
+      <td md-src-pos="10537..10681">Composant Blade qui représente un formulaire pour la création ou la modification d'un étudiant.</td>
+      <td md-src-pos="10682..10785">- <em md-src-pos="10685..10733">resources/views/components/etud-form.blade.php</em><br>
+       - <em md-src-pos="10739..10773">app/View/Components/EtudForm.php</em></td>
+     </tr>
+     <tr md-src-pos="10787..11053">
+      <td md-src-pos="10788..10803">EprTable</td>
+      <td md-src-pos="10804..10948">Composant Blade pour représenter un tableau d'affichage des épreuves.</td>
+      <td md-src-pos="10949..11052">- <em md-src-pos="10952..11000">resources/views/components/epr-table.blade.php</em><br>
+       - <em md-src-pos="11006..11040">app/View/Components/EprTable.php</em></td>
+     </tr>
+     <tr class="intellij-row-even" md-src-pos="11054..11320">
+      <td md-src-pos="11055..11070">EprForm</td>
+      <td md-src-pos="11071..11215">Composant Blade pour représenter un formulaire pour les épreuves.</td>
+      <td md-src-pos="11216..11319">- <em md-src-pos="11219..11266">resources/views/components/epr-form.blade.php</em><br>
+       - <em md-src-pos="11272..11305">app/View/Components/EprForm.php</em></td>
+     </tr>
+     <tr md-src-pos="11321..11587">
+      <td md-src-pos="11322..11337">ArrivForm</td>
+      <td md-src-pos="11338..11482">Composant Blade pour afficher le formulaire d'arrivée des étudiants à une épreuve.</td>
+      <td md-src-pos="11483..11586">- <em md-src-pos="11486..11535">resources/views/components/arriv-form.blade.php</em><br>
+       - <em md-src-pos="11541..11576">app/View/Components/ArrivForm.php</em></td>
+     </tr>
+     <tr class="intellij-row-even" md-src-pos="11588..11854">
+      <td md-src-pos="11589..11604">EditInscrForm</td>
+      <td md-src-pos="11605..11749">Composant Blade pour afficher le formulaire de modification des inscriptions à une épreuve.</td>
+      <td md-src-pos="11750..11853">- <em md-src-pos="11753..11807">resources/views/components/edit-inscr-form.blade.php</em><br>
+       - <em md-src-pos="11813..11852">app/View/Components/EditInscrForm.php</em></td>
+     </tr>
+     <tr md-src-pos="11855..12121">
+      <td md-src-pos="11856..11871">ShowInscrForm</td>
+      <td md-src-pos="11872..12016">Composant pour afficher le formulaire de détails d'une inscription à une épreuve.</td>
+      <td md-src-pos="12017..12120">- <em md-src-pos="12020..12074">resources/views/components/show-inscr-form.blade.php</em><br>
+       - <em md-src-pos="12080..12119">app/View/Components/ShowInscrForm.php</em></td>
+     </tr>
+     <tr class="intellij-row-even" md-src-pos="12122..12388">
+      <td md-src-pos="12123..12138">ArrivTable</td>
+      <td md-src-pos="12139..12283">Composant Blade pour afficher le tableau de détails d'arrivée des étudiants à une course.</td>
+      <td md-src-pos="12284..12387"></td>
+     </tr>
+    </tbody>
+   </table>
+   <h4 id="223-c---création-des-controllers" md-src-pos="12390..12430">2.2.3) C - Création des Controllers</h4>
+   <table md-src-pos="12432..14291">
+    <thead>
+     <tr md-src-pos="12432..12617">
+      <th md-src-pos="12433..12452">Controller</th>
+      <th md-src-pos="12453..12569">Description</th>
+      <th md-src-pos="12570..12616">Fichier source</th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr md-src-pos="12804..12989">
+      <td md-src-pos="12805..12824">AdminController</td>
+      <td md-src-pos="12825..12941">Ce contrôleur gère la création et le stockage de nouveaux administrateurs.</td>
+      <td md-src-pos="12942..12988"><em md-src-pos="12943..12985">app/Http/Controllers/AdminController.php</em></td>
+     </tr>
+     <tr class="intellij-row-even" md-src-pos="12990..13175">
+      <td md-src-pos="12991..13010">SessionController</td>
+      <td md-src-pos="13011..13127">Ce contrôleur gère les opérations de gestion de session utilisateur, telles que la connexion, la déconnexion, etc.</td>
+      <td md-src-pos="13128..13174"><em md-src-pos="13129..13173">app/Http/Controllers/SessionController.php</em></td>
+     </tr>
+     <tr md-src-pos="13176..13361">
+      <td md-src-pos="13177..13196">ClasController</td>
+      <td md-src-pos="13197..13313">Ce contrôleur gère les opérations liées aux classes dans l'application.</td>
+      <td md-src-pos="13314..13360"><em md-src-pos="13315..13356">app/Http/Controllers/ClasController.php</em></td>
+     </tr>
+     <tr class="intellij-row-even" md-src-pos="13362..13547">
+      <td md-src-pos="13363..13382">EtudController</td>
+      <td md-src-pos="13383..13499">Contrôleur pour la gestion des étudiants.</td>
+      <td md-src-pos="13500..13546"><em md-src-pos="13501..13542">app/Http/Controllers/EtudController.php</em></td>
+     </tr>
+     <tr md-src-pos="13548..13733">
+      <td md-src-pos="13549..13568">EprController</td>
+      <td md-src-pos="13569..13685">Gère les opérations liées aux épreuves.</td>
+      <td md-src-pos="13686..13732"><em md-src-pos="13687..13727">app/Http/Controllers/EprController.php</em></td>
+     </tr>
+     <tr class="intellij-row-even" md-src-pos="13734..13919">
+      <td md-src-pos="13735..13754">InscrController</td>
+      <td md-src-pos="13755..13871">Contrôleur pour la gestion des inscriptions aux épreuves.</td>
+      <td md-src-pos="13872..13918"><em md-src-pos="13873..13915">app/Http/Controllers/InscrController.php</em></td>
+     </tr>
+     <tr md-src-pos="13920..14105">
+      <td md-src-pos="13921..13940">ArrivController</td>
+      <td md-src-pos="13941..14057">Contrôleur gérant les arrivées des étudiants aux épreuves.</td>
+      <td md-src-pos="14058..14104"><em md-src-pos="14059..14101">app/Http/Controllers/ArrivController.php</em></td>
+     </tr>
+     <tr class="intellij-row-even" md-src-pos="14106..14291">
+      <td md-src-pos="14107..14126">StatsController</td>
+      <td md-src-pos="14127..14243">Contrôleur générant les statistiques.</td>
+      <td md-src-pos="14244..14290"><em md-src-pos="14245..14287">app/Http/Controllers/StatsController.php</em></td>
+     </tr>
+    </tbody>
+   </table>
+   <h3 id="23-autres-outils-laravel-utilisés" md-src-pos="14293..14332">2.3) Autres outils Laravel utilisés</h3>
+   <h4 id="231-création-des-requests" md-src-pos="14334..14367">2.3.1) Création des Requests</h4>
+   <p md-src-pos="14369..14681"><span md-src-pos="14369..14476">Les requests dans Laravel servent à valider et à traiter les données provenant des requêtes HTTP entrantes.</span> <span md-src-pos="14477..14480">Ils</span> <span md-src-pos="14481..14546">permettent de valider les données en fonction de règles définies,</span> <span md-src-pos="14547..14601">de simplifier le processus de récupération des données</span> <span md-src-pos="14602..14681">et de centraliser la logique de traitement des données dans des classes dédiées</span></p>
+   <table md-src-pos="14683..15246">
+    <thead>
+     <tr md-src-pos="14683..14776">
+      <th md-src-pos="14684..14697">Politique</th>
+      <th md-src-pos="14698..14740">Description</th>
+      <th md-src-pos="14741..14775">Fichier</th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr md-src-pos="14871..14964">
+      <td md-src-pos="14872..14885">ClasPolicy</td>
+      <td md-src-pos="14886..14928">Politique d'accès pour les classes.</td>
+      <td md-src-pos="14929..14963">- <em md-src-pos="14932..14961">app/Policies/ClasPolicy.php</em></td>
+     </tr>
+     <tr class="intellij-row-even" md-src-pos="14965..15058">
+      <td md-src-pos="14966..14979">EtudPolicy</td>
+      <td md-src-pos="14980..15022">Politique d'accès pour les étudiants.</td>
+      <td md-src-pos="15023..15057">- <em md-src-pos="15026..15055">app/Policies/EtudPolicy.php</em></td>
+     </tr>
+     <tr md-src-pos="15059..15152">
+      <td md-src-pos="15060..15073">EprPolicy</td>
+      <td md-src-pos="15074..15116">Politique d'accès pour les épreuves.</td>
+      <td md-src-pos="15117..15151">- <em md-src-pos="15120..15148">app/Policies/EprPolicy.php</em></td>
+     </tr>
+     <tr class="intellij-row-even" md-src-pos="15153..15246">
+      <td md-src-pos="15154..15167">InscrPolicy</td>
+      <td md-src-pos="15168..15210">Politique d'accès pour les inscriptions.</td>
+      <td md-src-pos="15211..15245">- <em md-src-pos="15214..15244">app/Policies/InscrPolicy.php</em></td>
+     </tr>
+    </tbody>
+   </table>
+   <h4 id="232-création-des-middlewares" md-src-pos="15248..15284">2.3.2) Création des middlewares</h4>
+   <p md-src-pos="15286..15639"><span md-src-pos="15286..15365">Les middlewares dans Laravel servent à filtrer les requêtes HTTP entrantes de l</span>'<span md-src-pos="15366..15386">application avant qu</span>'<span md-src-pos="15387..15394">elles n</span>'<span md-src-pos="15395..15405">atteignent</span> <span md-src-pos="15406..15436">les routes ou les contrôleurs.</span> <span md-src-pos="15437..15453">Ils permettent d</span>'<span md-src-pos="15454..15524">ajouter des couches de logique intermédiaire pour effectuer des tâches</span> <span md-src-pos="15525..15537">telles que l</span>'<span md-src-pos="15538..15555">authentification,</span> <span md-src-pos="15556..15557">l</span>'<span md-src-pos="15558..15571">autorisation,</span> <span md-src-pos="15572..15611">la manipulation des données de requête,</span> <span md-src-pos="15612..15639">la gestion des sessions,...</span></p>
+   <table md-src-pos="15641..16944">
+    <thead>
+     <tr md-src-pos="15641..15966">
+      <th md-src-pos="15642..15658">Middleware</th>
+      <th md-src-pos="15659..15893">Description</th>
+      <th md-src-pos="15894..15965">Fichiers</th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr md-src-pos="16293..16618">
+      <td md-src-pos="16294..16310">FirstTimeSetup</td>
+      <td md-src-pos="16311..16545">Ce middleware vérifie si c'est la première fois que le setup est effectué dans l'application. S'il n'y a aucun utilisateur enregistré dans la base de données, il redirige l'utilisateur vers la page d'inscription de l'administrateur.</td>
+      <td md-src-pos="16546..16617">- <em md-src-pos="16549..16589">app/Http/Middleware/FirstTimeSetup.php</em><br>
+       - <em md-src-pos="16595..16616">app/Http/Kernel.php</em></td>
+     </tr>
+     <tr class="intellij-row-even" md-src-pos="16619..16944">
+      <td md-src-pos="16620..16636">AdminCreated</td>
+      <td md-src-pos="16637..16871">Ce middleware vérifie si un administrateur a déjà été créé dans l'application. Si un utilisateur est enregistré dans la base de données, il redirige l'utilisateur vers la page d'accueil.</td>
+      <td md-src-pos="16872..16943">- <em md-src-pos="16875..16913">app/Http/Middleware/AdminCreated.php</em><br>
+       - <em md-src-pos="16919..16940">app/Http/Kernel.php</em></td>
+     </tr>
+    </tbody>
+   </table>
+   <h4 id="233-création-des-policy" md-src-pos="16946..16977">2.3.3) Création des Policy</h4>
+   <p md-src-pos="16979..17443"><span md-src-pos="16979..16993">Les politiques</span> (<span md-src-pos="16995..17003">policies</span>) <span md-src-pos="17005..17048">dans Laravel servent à définir des règles d</span>'<span md-src-pos="17049..17098">autorisation pour les différentes actions sur des</span> <span md-src-pos="17099..17118">modèles de données.</span> <span md-src-pos="17119..17163">Elles permettent de centraliser la logique d</span>'<span md-src-pos="17164..17202">autorisation dans des classes dédiées,</span> <span md-src-pos="17203..17216">en spécifiant</span> <span md-src-pos="17217..17283">quelles actions un utilisateur peut effectuer sur un modèle donné.</span> <span md-src-pos="17284..17337">Les politiques sont souvent utilisées pour déterminer</span> <span md-src-pos="17338..17367">si un utilisateur peut créer,</span> <span md-src-pos="17368..17377">afficher,</span> <span md-src-pos="17378..17432">mettre à jour ou supprimer une instance particulière d</span>'<span md-src-pos="17433..17443">un modèle.</span></p>
+   <table md-src-pos="17445..18008">
+    <thead>
+     <tr md-src-pos="17445..17538">
+      <th md-src-pos="17446..17459">Politique</th>
+      <th md-src-pos="17460..17502">Description</th>
+      <th md-src-pos="17503..17537">Fichier</th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr md-src-pos="17633..17726">
+      <td md-src-pos="17634..17647">ClasPolicy</td>
+      <td md-src-pos="17648..17690">Politique d'accès pour les classes.</td>
+      <td md-src-pos="17691..17725">- <em md-src-pos="17694..17723">app/Policies/ClasPolicy.php</em></td>
+     </tr>
+     <tr class="intellij-row-even" md-src-pos="17727..17820">
+      <td md-src-pos="17728..17741">EtudPolicy</td>
+      <td md-src-pos="17742..17784">Politique d'accès pour les étudiants.</td>
+      <td md-src-pos="17785..17819">- <em md-src-pos="17788..17817">app/Policies/EtudPolicy.php</em></td>
+     </tr>
+     <tr md-src-pos="17821..17914">
+      <td md-src-pos="17822..17835">EprPolicy</td>
+      <td md-src-pos="17836..17878">Politique d'accès pour les épreuves.</td>
+      <td md-src-pos="17879..17913">- <em md-src-pos="17882..17910">app/Policies/EprPolicy.php</em></td>
+     </tr>
+     <tr class="intellij-row-even" md-src-pos="17915..18008">
+      <td md-src-pos="17916..17929">InscrPolicy</td>
+      <td md-src-pos="17930..17972">Politique d'accès pour les inscriptions.</td>
+      <td md-src-pos="17973..18007">- <em md-src-pos="17976..18006">app/Policies/InscrPolicy.php</em></td>
+     </tr>
+    </tbody>
+   </table>
+   <h2 id="3-mode-demploi-utilisateur-sommaire" md-src-pos="18010..18050">3) Mode d’emploi utilisateur sommaire</h2>
+   <h3 id="31-première-utilisation" md-src-pos="18052..18081">3.1) Première utilisation</h3>
+   <p md-src-pos="18083..18192"><span md-src-pos="18083..18115">Lors de la première utilisation,</span> <span md-src-pos="18116..18135">il est impossible d</span>'<span md-src-pos="18136..18190">accéder au site web sans enregistrer un administrateur</span> :</p>
+   <p md-src-pos="18194..18224"><img src="http://localhost:63342/markdownPreview/1731934825/fileSchemeResource/d61dba6b92c930b1fd0190f7ff5a873c-Emploi1.png?_ijt=6mtv24e69nnl22rpmdnfb516b3" alt="imgpng" __idea-generated="true" md-src-pos="18194..18224" data-original-src="file:/C:/wamp64/www/HanutA_PrjDevWeb2324/ReadMe/Emploi1.png"></p>
+   <p md-src-pos="18226..18368"><span md-src-pos="18226..18236">Une fois l</span>'<span md-src-pos="18237..18257">administrateur créé,</span> <span md-src-pos="18258..18319">celui-ci est automatiquement connecté et arrive sur la page d</span>'<span md-src-pos="18320..18328">accueil,</span> <span md-src-pos="18329..18342">reprenant les</span> <span md-src-pos="18343..18368">différentes statistiques.</span></p>
+   <p md-src-pos="18370..18400"><img src="http://localhost:63342/markdownPreview/1731934825/fileSchemeResource/17471c811629cce88293d4f714620bf6-Emploi2.png?_ijt=6mtv24e69nnl22rpmdnfb516b3" alt="imgpng" __idea-generated="true" md-src-pos="18370..18400" data-original-src="file:/C:/wamp64/www/HanutA_PrjDevWeb2324/ReadMe/Emploi2.png"></p>
+   <h3 id="32-utilisation" md-src-pos="18402..18422">3.2) Utilisation</h3>
+   <p md-src-pos="18424..18491"><span md-src-pos="18424..18440">Le menu permet d</span>'<span md-src-pos="18441..18491">accéder aux différentes possibilitées du site web.</span></p>
+   <p md-src-pos="18493..18523"><img src="http://localhost:63342/markdownPreview/1731934825/fileSchemeResource/5e757c70894f314ae3acd2a0417f8be0-Emploi3.png?_ijt=6mtv24e69nnl22rpmdnfb516b3" alt="imgpng" __idea-generated="true" md-src-pos="18493..18523" data-original-src="file:/C:/wamp64/www/HanutA_PrjDevWeb2324/ReadMe/Emploi3.png"></p>
+   <p md-src-pos="18525..18602"><span md-src-pos="18525..18555">La structure pour les Classes,</span> <span md-src-pos="18556..18600">les Etudiants et les Epreuves est identiques</span> :</p>
+   <ul md-src-pos="18604..18794">
+    <li md-src-pos="18604..18794">La page principal permet de visualiser la liste des éléments, de faire une recherche sur ceux-ci, d'accéder aux formulaire de création de l'élément et d'afficher les détails de ceux-ci :</li>
+   </ul>
+   <ol md-src-pos="18796..19065">
+    <li md-src-pos="18796..18844">Permet d'effectuer une recherche d'un élément</li>
+    <li md-src-pos="18845..18903">Permet d'accéder au formulaire de création de l'élement</li>
+    <li md-src-pos="18904..18988">Permet d'afficher un élément, ce qui permet de voir / éditer / supprimer celui-ci</li>
+    <li md-src-pos="18989..19065">Permet de naviguer parmit les éléments quand ceux-ci sont supérieur à 10.</li>
+   </ol>
+   <p md-src-pos="19067..19097"><img src="http://localhost:63342/markdownPreview/1731934825/fileSchemeResource/5cb2011770b869434e7a12697a92a2a3-Emploi4.png?_ijt=6mtv24e69nnl22rpmdnfb516b3" alt="imgpng" __idea-generated="true" md-src-pos="19067..19097" data-original-src="file:/C:/wamp64/www/HanutA_PrjDevWeb2324/ReadMe/Emploi4.png"></p>
+   <ul md-src-pos="19099..19123">
+    <li md-src-pos="19099..19123">Affichage de l'élément</li>
+   </ul>
+   <ol md-src-pos="19125..19297">
+    <li md-src-pos="19125..19169">Zone d'affichage / d'édition de l'élément</li>
+    <li md-src-pos="19170..19232">Accèder a la suppression de l'élément ( avec confirmation )</li>
+    <li md-src-pos="19233..19297">Enregistre les modifications effectuée dans la zone d'édition</li>
+   </ol>
+   <p md-src-pos="19299..19329"><img src="http://localhost:63342/markdownPreview/1731934825/fileSchemeResource/cabd374810ba0b90b9c55424551d9a02-Emploi6.png?_ijt=6mtv24e69nnl22rpmdnfb516b3" alt="imgpng" __idea-generated="true" md-src-pos="19299..19329" data-original-src="file:/C:/wamp64/www/HanutA_PrjDevWeb2324/ReadMe/Emploi6.png"></p>
+   <p md-src-pos="19331..19408"><span md-src-pos="19331..19353">Pour les inscriptions,</span> <span md-src-pos="19354..19381">il nous faut selectionner l</span>'<span md-src-pos="19382..19408">épreuve qui nous interesse</span></p>
+   <p md-src-pos="19410..19440"><img src="http://localhost:63342/markdownPreview/1731934825/fileSchemeResource/8738b9f5bc4f6d62a3f88654f14c9429-Emploi7.png?_ijt=6mtv24e69nnl22rpmdnfb516b3" alt="imgpng" __idea-generated="true" md-src-pos="19410..19440" data-original-src="file:/C:/wamp64/www/HanutA_PrjDevWeb2324/ReadMe/Emploi7.png"></p>
+   <p md-src-pos="19442..19691"><span md-src-pos="19442..19484">Nous sommes alors rediriger vers la page d</span>'<span md-src-pos="19485..19497">inscription,</span> <span md-src-pos="19498..19504">pour l</span>'<span md-src-pos="19505..19534">inscription il faut une heure</span> (<span md-src-pos="19536..19554">si pas encodé dans</span> <span md-src-pos="19555..19556">l</span>'<span md-src-pos="19557..19564">épreuve</span>) <span md-src-pos="19566..19587">et un type de coureur</span> (<span md-src-pos="19589..19597">run/walk</span>) : <span md-src-pos="19601..19622">Ensuite appuyé sur le</span> <span md-src-pos="19623..19624">+</span> <span md-src-pos="19625..19647">Vert afin de valider l</span>'<span md-src-pos="19648..19660">inscription.</span> <img src="http://localhost:63342/markdownPreview/1731934825/fileSchemeResource/1ec080151e3d8d0d47140780bc3d50f3-Emploi8.png?_ijt=6mtv24e69nnl22rpmdnfb516b3" alt="imgpng" __idea-generated="true" md-src-pos="19661..19691" data-original-src="file:/C:/wamp64/www/HanutA_PrjDevWeb2324/ReadMe/Emploi8.png"></p>
+   <p md-src-pos="19693..19765"><span md-src-pos="19693..19694">L</span>'<span md-src-pos="19695..19765">étudiant devrait alors apparaitre dans la liste des étudiants inscrits</span></p>
+   <p md-src-pos="19767..19797"><img src="http://localhost:63342/markdownPreview/1731934825/fileSchemeResource/f7505342362ec504ef606acf02e56bb9-Emploi9.png?_ijt=6mtv24e69nnl22rpmdnfb516b3" alt="imgpng" __idea-generated="true" md-src-pos="19767..19797" data-original-src="file:/C:/wamp64/www/HanutA_PrjDevWeb2324/ReadMe/Emploi9.png"></p>
+   <ul md-src-pos="19799..19987">
+    <li md-src-pos="19799..19895">Le '- Rouge' permet alors de désinscrire l'étudiant (uniquement si il n'a pas fini l'épreuve).</li>
+    <li md-src-pos="19896..19987">Le 'i bleu' permet d'afficher et d'éditer (si l'épreuve n'est pas terminé) l'inscription.</li>
+   </ul>
+   <p md-src-pos="19989..20062"><span md-src-pos="19989..20007">Pour les arrivées,</span> <span md-src-pos="20008..20035">il nous faut selectionner l</span>'<span md-src-pos="20036..20062">épreuve qui nous interesse</span></p>
+   <p md-src-pos="20064..20095"><img src="http://localhost:63342/markdownPreview/1731934825/fileSchemeResource/03ceaa119013031d2c20327161a0b3aa-Emploi10.png?_ijt=6mtv24e69nnl22rpmdnfb516b3" alt="imgpng" __idea-generated="true" md-src-pos="20064..20095" data-original-src="file:/C:/wamp64/www/HanutA_PrjDevWeb2324/ReadMe/Emploi10.png"></p>
+   <p md-src-pos="20097..20203"><span md-src-pos="20097..20117">Il faut encodé le n°</span> <span md-src-pos="20118..20128">de dossard</span> (<span md-src-pos="20130..20159">trouvable dans les tableaux d</span>'<span md-src-pos="20160..20185">inscriptions aux épreuves</span>) <span md-src-pos="20187..20200">et enregistré</span> :</p>
+   <p md-src-pos="20205..20236"><img src="http://localhost:63342/markdownPreview/1731934825/fileSchemeResource/6ec362a3c79e88c06bb8ed4a2f8dbc47-Emploi11.png?_ijt=6mtv24e69nnl22rpmdnfb516b3" alt="imgpng" __idea-generated="true" md-src-pos="20205..20236" data-original-src="file:/C:/wamp64/www/HanutA_PrjDevWeb2324/ReadMe/Emploi11.png"></p>
+   <h3 id="33-deconnexion-" md-src-pos="20238..20259">3.3) Deconnexion</h3>
+   <p md-src-pos="20261..20399"><span md-src-pos="20261..20281">Pour se déconnecter,</span> <span md-src-pos="20282..20324">il suffit de cliquer en haut à droite de l</span>'<span md-src-pos="20325..20337">application,</span> <span md-src-pos="20338..20351">sur son nom d</span>'<span md-src-pos="20352..20382">utilisateur et de selectionner</span> "<span md-src-pos="20384..20398">Se déconnecter</span>"</p>
+   <p md-src-pos="20401..20432"><img src="http://localhost:63342/markdownPreview/1731934825/fileSchemeResource/879aababbcefa807acac2a30616efda1-Emploi12.png?_ijt=6mtv24e69nnl22rpmdnfb516b3" alt="imgpng" __idea-generated="true" md-src-pos="20401..20432" data-original-src="file:/C:/wamp64/www/HanutA_PrjDevWeb2324/ReadMe/Emploi12.png"></p>
+  </div>
+ </body>
+</html>
