@@ -1,22 +1,22 @@
 \babel@toc {french}{}\relax 
 \contentsline {chapter}{\numberline {1}Déploiement}{2}{}%
-\contentsline {chapter}{\numberline {2}Documentation}{3}{}%
-\contentsline {section}{\numberline {2.1}Base de données}{3}{}%
-\contentsline {subsection}{\numberline {2.1.1}Schéma de la database}{3}{}%
-\contentsline {subsection}{\numberline {2.1.2}Implémentation}{4}{}%
-\contentsline {section}{\numberline {2.2}Utilisation du pattern de conception MVC}{5}{}%
-\contentsline {subsection}{\numberline {2.2.1}Routes}{5}{}%
-\contentsline {subsection}{\numberline {2.2.2}Modèles}{5}{}%
-\contentsline {subsection}{\numberline {2.2.3}Vues}{6}{}%
-\contentsline {subsubsection}{Layouts}{6}{}%
-\contentsline {subsubsection}{Vues}{6}{}%
-\contentsline {subsubsection}{Components}{6}{}%
-\contentsline {subsection}{\numberline {2.2.4}Contrôleurs}{8}{}%
-\contentsline {section}{\numberline {2.3}Autres outils Laravel utilisés}{8}{}%
-\contentsline {subsection}{\numberline {2.3.1}Requests}{8}{}%
-\contentsline {subsection}{\numberline {2.3.2}Middlewares}{9}{}%
-\contentsline {subsection}{\numberline {2.3.3}Policies}{9}{}%
-\contentsline {chapter}{\numberline {3}Mode d'emploi utilisateur}{10}{}%
-\contentsline {section}{\numberline {3.1}Première utilisation}{10}{}%
-\contentsline {section}{\numberline {3.2}Utilisation}{11}{}%
-\contentsline {section}{\numberline {3.3}Deconnexion}{14}{}%
+\contentsline {chapter}{\numberline {2}Documentation}{4}{}%
+\contentsline {section}{\numberline {2.1}Base de données}{4}{}%
+\contentsline {subsection}{\numberline {2.1.1}Schéma de la database}{4}{}%
+\contentsline {subsection}{\numberline {2.1.2}Implémentation}{5}{}%
+\contentsline {section}{\numberline {2.2}Utilisation du pattern de conception MVC}{6}{}%
+\contentsline {subsection}{\numberline {2.2.1}Routes}{6}{}%
+\contentsline {subsection}{\numberline {2.2.2}Modèles}{6}{}%
+\contentsline {subsection}{\numberline {2.2.3}Vues}{7}{}%
+\contentsline {subsubsection}{Layouts}{7}{}%
+\contentsline {subsubsection}{Vues}{7}{}%
+\contentsline {subsubsection}{Components}{7}{}%
+\contentsline {subsection}{\numberline {2.2.4}Contrôleurs}{9}{}%
+\contentsline {section}{\numberline {2.3}Autres outils Laravel utilisés}{9}{}%
+\contentsline {subsection}{\numberline {2.3.1}Requests}{9}{}%
+\contentsline {subsection}{\numberline {2.3.2}Middlewares}{10}{}%
+\contentsline {subsection}{\numberline {2.3.3}Policies}{10}{}%
+\contentsline {chapter}{\numberline {3}Mode d'emploi utilisateur}{11}{}%
+\contentsline {section}{\numberline {3.1}Première utilisation}{11}{}%
+\contentsline {section}{\numberline {3.2}Utilisation}{12}{}%
+\contentsline {section}{\numberline {3.3}Deconnexion}{15}{}%
