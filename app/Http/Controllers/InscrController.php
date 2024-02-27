@@ -23,6 +23,7 @@ class InscrController extends Controller
 
     /**
      * Affiche la liste des épreuves disponibles pour les inscriptions.
+     * @return Factory|View
      */
     public function index()
     {
@@ -38,6 +39,10 @@ class InscrController extends Controller
 
     /**
      * Affiche le formulaire pour l'inscription à une épreuve spécifique.
+     *
+     * @param Request $request
+     * @param Epr $epr
+     * @return RedirectResponse|\Illuminate\Contracts\Foundation\Application|Factory|View|Application
      */
     public function edit(Request $request, Epr $epr): RedirectResponse|\Illuminate\Contracts\Foundation\Application|Factory|View|Application
     {
@@ -83,6 +88,9 @@ class InscrController extends Controller
 
     /**
      * Récupère l'ID de l'épreuve sélectionnée et redirige vers la page de modification de l'inscription.
+     *
+     * @param Request $request
+     * @return RedirectResponse
      */
     public function getEpr(Request $request)
     {
@@ -95,6 +103,10 @@ class InscrController extends Controller
 
     /**
      * Traite la soumission du formulaire d'inscription et enregistre l'inscription à l'épreuve.
+     *
+     * @param InscrRequest $request
+     * @param Epr $epr
+     * @return RedirectResponse
      */
     public function store(InscrRequest $request, Epr $epr)
     {
@@ -131,6 +143,10 @@ class InscrController extends Controller
 
     /**
      * Traite la suppression d'une inscription à une épreuve.
+     *
+     * @param Request $request
+     * @param Epr $epr
+     * @return RedirectResponse
      */
     public function destroy(Request $request, Epr $epr)
     {

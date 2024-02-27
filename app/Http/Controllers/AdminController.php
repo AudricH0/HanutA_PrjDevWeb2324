@@ -21,6 +21,8 @@ class AdminController extends Controller
 
     /**
      * Affiche le formulaire de création d'un nouvel administrateur.
+     *
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
      */
     public function create(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
@@ -29,6 +31,9 @@ class AdminController extends Controller
 
     /**
      * Stocke un nouvel administrateur dans la base de données, connecte celui-ci et redirige vers home.
+     *
+     * @param AdminRequest $request
+     * @return RedirectResponse
      */
     public function store(AdminRequest $request): RedirectResponse
     {

@@ -6,6 +6,8 @@ use App\Http\Requests\EtudRequest;
 use App\Models\Clas;
 use App\Models\Etud;
 use Exception;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 /**
@@ -23,6 +25,9 @@ class EtudController extends Controller
 
     /**
      * Affiche la liste des étudiants.
+     *
+     * @param Request $request
+     * @return View|RedirectResponse
      */
     public function index(Request $request)
     {
@@ -44,6 +49,8 @@ class EtudController extends Controller
 
     /**
      * Affiche le formulaire de création d'un nouvel étudiant.
+     *
+     * @return View
      */
     public function create()
     {
@@ -60,6 +67,9 @@ class EtudController extends Controller
 
     /**
      * Enregistre un nouvel étudiant dans la base de données.
+     *
+     * @param EtudRequest $request
+     * @return RedirectResponse
      */
     public function store(EtudRequest $request)
     {
@@ -86,6 +96,10 @@ class EtudController extends Controller
 
     /**
      * Affiche le formulaire de modification d'un étudiant.
+     *
+     * @param Request $request
+     * @param Etud $etud
+     * @return View|RedirectResponse
      */
     public function edit(Request $request, Etud $etud)
     {
@@ -110,6 +124,10 @@ class EtudController extends Controller
 
     /**
      * Met à jour les informations d'un étudiant dans la base de données.
+     *
+     * @param EtudRequest $request
+     * @param Etud $etud
+     * @return RedirectResponse
      */
     public function update(EtudRequest $request, Etud $etud)
     {
@@ -133,6 +151,9 @@ class EtudController extends Controller
 
     /**
      * Affiche le formulaire de confirmation de suppression d'un étudiant.
+     *
+     * @param Etud $etud
+     * @return View
      */
     public function delete(Etud $etud)
     {
@@ -149,6 +170,9 @@ class EtudController extends Controller
 
     /**
      * Supprime un étudiant de la base de données.
+     *
+     * @param Etud $etud
+     * @return RedirectResponse
      */
     public function destroy(Etud $etud)
     {

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\DB;
 
 class StatsController extends Controller
@@ -15,6 +17,7 @@ class StatsController extends Controller
      * d'épreuves, le pourcentage d'abstention et les pourcentages de participation
      * à la course et à la marche.
      *
+     * @return Factory|View
      */
     public function index()
     {

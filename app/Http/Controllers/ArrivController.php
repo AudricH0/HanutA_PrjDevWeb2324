@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Epr;
 use App\Models\Inscr;
 use Carbon\Carbon;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -15,6 +17,8 @@ class ArrivController extends Controller
 {
     /**
      * Affiche la page d'accueil des arrivées.
+     *
+     * @return View
      */
     public function index()
     {
@@ -30,6 +34,9 @@ class ArrivController extends Controller
 
     /**
      * Récupère l'épreuve sélectionnée pour afficher les arrivées.
+     *
+     * @param Request $request
+     * @return RedirectResponse
      */
     public function getEpr(Request $request)
     {
@@ -43,6 +50,9 @@ class ArrivController extends Controller
 
     /**
      * Affiche les détails des arrivées pour une épreuve spécifique.
+     *
+     * @param Epr $epr
+     * @return View|RedirectResponse
      */
     public function edit(Epr $epr)
     {
@@ -74,6 +84,10 @@ class ArrivController extends Controller
 
     /**
      * Enregistre l'arrivée d'un étudiant à une épreuve.
+     *
+     * @param Request $request
+     * @param Epr $epr
+     * @return RedirectResponse
      */
     public function store(Request $request, Epr $epr)
     {

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ClasRequest;
 use App\Models\Clas;
 use Exception;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -25,6 +27,9 @@ class ClasController extends Controller
 
     /**
      * Affiche la liste des classes.
+     *
+     * @param Request $request
+     * @return View|RedirectResponse
      */
     public function index(Request $request)
     {
@@ -47,6 +52,8 @@ class ClasController extends Controller
 
     /**
      * Affiche le formulaire de création d'une nouvelle classe.
+     *
+     * @return View
      */
     public function create()
     {
@@ -63,6 +70,10 @@ class ClasController extends Controller
 
     /**
      * Affiche le formulaire d'édition d'une classe existante.
+     *
+     * @param Request $request
+     * @param Clas $clas
+     * @return View|RedirectResponse
      */
     public function edit(Request $request, Clas $clas)
     {
@@ -86,6 +97,9 @@ class ClasController extends Controller
 
     /**
      * Affiche le formulaire de confirmation de suppression d'une classe.
+     *
+     * @param Clas $clas
+     * @return View
      */
     public function delete(Clas $clas)
     {
@@ -102,6 +116,9 @@ class ClasController extends Controller
 
     /**
      * Enregistre une nouvelle classe dans la base de données.
+     *
+     * @param ClasRequest $request
+     * @return RedirectResponse
      */
     public function store(ClasRequest $request)
     {
@@ -126,6 +143,9 @@ class ClasController extends Controller
 
     /**
      * Supprime une classe de la base de données.
+     *
+     * @param Clas $clas
+     * @return RedirectResponse
      */
     public function destroy(Clas $clas)
     {
@@ -143,6 +163,10 @@ class ClasController extends Controller
 
     /**
      * Met à jour une classe dans la base de données.
+     *
+     * @param ClasRequest $request
+     * @param Clas $clas
+     * @return RedirectResponse
      */
     public function update(ClasRequest $request, Clas $clas)
     {

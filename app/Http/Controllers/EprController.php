@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\EprRequest;
 use App\Models\Epr;
 use Exception;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 /**
@@ -22,6 +24,9 @@ class EprController extends Controller
 
     /**
      * Affiche la liste des épreuves.
+     *
+     * @param Request $request
+     * @return View|RedirectResponse
      */
     public function index(Request $request)
     {
@@ -43,6 +48,8 @@ class EprController extends Controller
 
     /**
      * Affiche le formulaire de création d'une nouvelle épreuve.
+     *
+     * @return View
      */
     public function create()
     {
@@ -58,6 +65,9 @@ class EprController extends Controller
 
     /**
      * Enregistre une nouvelle épreuve.
+     *
+     * @param EprRequest $request
+     * @return RedirectResponse
      */
     public function store(EprRequest $request)
     {
@@ -83,6 +93,10 @@ class EprController extends Controller
 
     /**
      * Affiche le formulaire d'édition d'une épreuve existante.
+     *
+     * @param Request $request
+     * @param Epr $epr
+     * @return View|RedirectResponse
      */
     public function edit(Request $request, Epr $epr)
     {
@@ -106,6 +120,10 @@ class EprController extends Controller
 
     /**
      * Met à jour une épreuve existante.
+     *
+     * @param EprRequest $request
+     * @param Epr $epr
+     * @return RedirectResponse
      */
     public function update(EprRequest $request, Epr $epr)
     {
@@ -129,6 +147,9 @@ class EprController extends Controller
 
     /**
      * Affiche le formulaire de confirmation de suppression d'une épreuve.
+     *
+     * @param Epr $epr
+     * @return View
      */
     public function delete(Epr $epr)
     {
@@ -145,6 +166,9 @@ class EprController extends Controller
 
     /**
      * Supprime une épreuve.
+     *
+     * @param Epr $epr
+     * @return RedirectResponse
      */
     public function destroy(Epr $epr)
     {

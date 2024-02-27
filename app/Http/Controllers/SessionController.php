@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SessionRequest;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,6 +19,8 @@ class SessionController extends Controller
 {
     /**
      * Affiche le formulaire de connexion.
+     *
+     * @return Factory|View
      */
     public function create()
     {
@@ -24,6 +29,9 @@ class SessionController extends Controller
 
     /**
      * Gère la soumission du formulaire de connexion.
+     *
+     * @param SessionRequest $request
+     * @return RedirectResponse
      */
     public function store(SessionRequest $request)
     {
@@ -39,6 +47,8 @@ class SessionController extends Controller
 
     /**
      * Affiche la page de confirmation de déconnexion.
+     *
+     * @return Factory|View
      */
     public function logout()
     {
@@ -53,6 +63,9 @@ class SessionController extends Controller
 
     /**
      * Déconnecte l'utilisateur.
+     *
+     * @param Request $request
+     * @return RedirectResponse
      */
     public function destroy(Request $request)
     {
