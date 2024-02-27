@@ -1,0 +1,52 @@
+\documentclass[12pt,a4paper]{report}
+
+%----------------------------------------------------------
+% Les styles
+%----------------------------------------------------------
+\input{styles/style}
+
+%----------------------------------------------------------
+% La configuration du document
+% (Titre, Auteur et Date)
+%----------------------------------------------------------
+\input{rapport/config}
+
+%----------------------------------------------------------
+\begin{document}
+%----------------------------------------------------------
+
+	
+	\include{rapport/cover}
+	\include{rapport/toc}
+	
+	%----------------------------------------------------------
+	% Document
+	%----------------------------------------------------------
+	\chapter{Déploiement}
+		\input{rapport/deploiement/wamp64}
+		
+	\chapter{Documentation}
+		\input{rapport/documentation/database/intro}
+			\input{rapport/documentation/database/schema}
+			\input{rapport/documentation/database/implementation}
+		
+		\input{rapport/documentation/mvc/intro}
+			\input{rapport/documentation/mvc/routes}
+			\input{rapport/documentation/mvc/models}
+			\input{rapport/documentation/mvc/vues/intro}
+				\input{rapport/documentation/mvc/vues/layouts}
+				\input{rapport/documentation/mvc/vues/vues}
+				\input{rapport/documentation/mvc/vues/components}
+			\input{rapport/documentation/mvc/controllers}
+			
+		\input{rapport/documentation/laravel/intro}
+			\input{rapport/documentation/laravel/requests}
+			\input{rapport/documentation/laravel/middleware}
+			\input{rapport/documentation/laravel/policy}
+			
+	\chapter{Mode d'emploi utilisateur}
+		\input{rapport/modeemploi/intro}
+		\input{rapport/modeemploi/utilisation}
+		\input{rapport/modeemploi/deconnexion}
+	
+\end{document}

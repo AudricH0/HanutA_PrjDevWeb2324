@@ -1,0 +1,27 @@
+\newpage
+\subsection{Middlewares}
+
+Les middlewares dans Laravel servent à filtrer les requêtes HTTP entrantes de l'application avant qu'elles n'atteignent les routes ou les contrôleurs. Ils permettent d'ajouter des couches de logique intermédiaire pour effectuer des tâches telles que l'authentification, l'autorisation, la manipulation des données de requête, la gestion des sessions,...
+
+\begin{table}[H]
+	\begin{adjustbox}{width=\textwidth}
+		\begin{tabular}{|l|p{0.6\textwidth}|p{0.6\textwidth}|}
+			\hline
+			\textbf{Middleware} & \textbf{Description} & \textbf{Fichier source} \\
+			\hline
+			
+			FirstTimeSetup & Ce middleware vérifie si c'est la première fois que le setup est effectué dans l'application. S'il n'y a aucun utilisateur enregistré dans la base de données, il redirige l'utilisateur vers la page d'inscription de l'administrateur. & \begin{itemize}
+				\item \url{app/Http/Middleware/FirstTimeSetup.php}
+				\item \url{app/Http/Kernel.php} 
+			\end{itemize} \\
+			
+			AdminCreated & Ce middleware vérifie si un administrateur a déjà été créé dans l'application. Si un utilisateur est enregistré dans la base de données, il redirige l'utilisateur vers la page d'accueil. & \begin{itemize}
+				\item \url{app/Http/Middleware/AdminCreated.php}
+				\item \url{app/Http/Kernel.php} 
+			\end{itemize} \\
+			
+			\hline
+		\end{tabular}
+	\end{adjustbox}
+	\caption{Liste des middlewares utilisés}
+\end{table}

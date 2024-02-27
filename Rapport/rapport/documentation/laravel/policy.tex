@@ -1,0 +1,19 @@
+\subsection{Policies}
+
+Les politiques (policies) dans Laravel servent à définir des règles d'autorisation pour les différentes actions sur des modèles de données. Elles permettent de centraliser la logique d'autorisation dans des classes dédiées, en spécifiant quelles actions un utilisateur peut effectuer sur un modèle donné. Les politiques sont souvent utilisées pour déterminer si un utilisateur peut créer, afficher, mettre à jour ou supprimer une instance particulière d'un modèle.
+
+\begin{table}[H]
+	\begin{adjustbox}{width=\textwidth}
+		\begin{tabular}{|l|p{0.6\textwidth}|p{0.6\textwidth}|}
+			\hline
+			\textbf{Policy} & \textbf{Description} & \textbf{Fichier source} \\
+			\hline
+			ClasPolicy & Politique d'accès pour les classes. & \url{app/Policies/ClasPolicy.php} \\
+			EtudPolicy 		& Politique d'accès pour les étudiants. 		& \url{app/Policies/EtudPolicy.php} \\
+			EprPolicy 		& Politique d'accès pour les épreuves. 		& \url{app/Policies/EprPolicy.php} \\
+			InscrPolicy 	& Politique d'accès pour les inscriptions. 	& \url{app/Policies/InscrPolicy.php} \\
+			\hline
+		\end{tabular}
+	\end{adjustbox}
+	\caption{Liste des policy utilisés}
+\end{table}

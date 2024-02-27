@@ -1,0 +1,21 @@
+\subsection{Requests}
+
+Les requests dans Laravel servent à valider et à traiter les données provenant des requêtes HTTP entrantes. Ils permettent de valider les données en fonction de règles définies, de simplifier le processus de récupération des données et de centraliser la logique de traitement des données dans des classes dédiées
+
+\begin{table}[h]
+	\begin{adjustbox}{width=\textwidth}
+		\begin{tabular}{|l|p{0.6\textwidth}|p{0.6\textwidth}|}
+			\hline
+			\textbf{Requests} & \textbf{Description} & \textbf{Fichier source} \\
+			\hline
+			AdminRequest & représente une requête pour un administrateur & \url{app/Http/Requests/AdminRequest.php} \\
+			ClasRequest 		& Requête de validation pour la création ou la mise à jour d'une classe. 		& \url{app/Http/Requests/ClasRequest.php} \\
+			EprRequest 		& Valide les données de la requête pour la création ou la mise à jour d'une épreuve. 		& \url{app/Http/Requests/EprRequest.phpp} \\
+			EtudRequest 	& Valide les requêtes de création ou de mise à jour d'un étudiant. 	& \url{app/Http/Requests/EtudRequest.php} \\
+			InscrRequest 	& Valide les requêtes de création ou de mise à jour d'une inscription à une épreuve. 	& \url{app/Http/Requests/InscrRequest.php} \\
+			SessionRequest 	& Cette classe représente une requête de session utilisateur. 	& \url{app/Http/Requests/SessionRequest.php} \\
+			\hline
+		\end{tabular}
+	\end{adjustbox}
+	\caption{Liste des Requests utilisés}
+\end{table}

@@ -1,0 +1,49 @@
+% Redéfinition du format de la commande \part pour éviter l'ajout d'une nouvelle page
+\makeatletter
+\def\@endpart{\vfil\newpage}
+\makeatother
+
+% Packages
+\usepackage[utf8]{inputenc} % Encodage du texte en UTF-8
+\usepackage[T1]{fontenc} % Encodage des caractères en sortie
+\usepackage[french]{babel} % Support de la langue française
+\usepackage{graphicx} % Inclusion d'images
+\usepackage{setspace} % Espacement
+\usepackage{titlesec} % Personnalisation des titres
+\usepackage{fancyhdr} % En-têtes et pieds de page personnalisés
+\usepackage{lipsum} % Génération de texte fictif Lorem Ipsum
+\usepackage{amsmath} % Pour la commande \numberwithin
+\usepackage{url}
+\usepackage{enumitem} % Pour personnaliser les listes
+\usepackage{adjustbox}
+\usepackage{float} % Pour utiliser l'option [H]
+
+
+% Marges du document
+\usepackage[left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\setlength{\tabcolsep}{0.3cm} 
+
+% En-têtes et pieds de page
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\thepage}
+\lhead{\leftmark}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\leftmark}
+\fancyhead[LO]{\rightmark}
+
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
+
+% Numérotation des sections
+\numberwithin{section}{chapter}
+
+% Supprimer le préfixe "Chapitre X" des titres de chapitre dans la table des matières
+\titleformat{\chapter}[display]
+{\normalfont\huge\bfseries}{}{0pt}{\Huge}
+
+\titleformat{\chapter}[display]
+{\normalfont\huge\bfseries}{}{-10pt}{\Huge}
+
+\titlespacing{\chapter}{0pt}{-32pt}{1cm}

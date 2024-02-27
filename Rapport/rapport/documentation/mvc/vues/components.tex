@@ -1,0 +1,50 @@
+\subsubsection{Components}
+
+Utilisation de components blade afin d'utiliser la réutilisabilité de ceux-ci dans plusieurs vues \\
+
+\begin{table}[H]
+	\begin{adjustbox}{width=\textwidth}
+		\begin{tabular}{|l|p{0.6\textwidth}|p{0.6\textwidth}|}
+			\hline
+			\textbf{Component} & \textbf{Description} & \textbf{Fichier source} \\
+			\hline
+			FlashMessage & Composant utilisé pour afficher un message éphémère à l'utilisateur. Il peut être utilisé pour afficher des messages d'alerte, de succès, etc. & \begin{itemize}
+				\item \url{resources/views/components/flash-message.blade.php}
+				\item \url{app/View/Components/FlashMessage.php}
+			\end{itemize} \\
+			Breadcrumb 	& Composant utilisé pour afficher une barre de navigation en utilisant des éléments de navigation spécifiés. & \begin{itemize}
+				\item \url{resources/views/components/breadcrumb.blade.php}
+				\item \url{app/View/Components/Breadcrumb.php} 
+			\end{itemize} \\
+			ClasTable 	& Composant Blade pour afficher une table de classes. 		& \begin{itemize}
+				\item \url{resources/views/components/clas-table.blade.php}
+				\item \url{app/View/Components/ClasTable.php} 
+			\end{itemize} \\
+			Search 			& Composant Blade pour une barre de recherche. 	& 
+			\begin{itemize}\item \url{resources/views/components/search.blade.php}
+				\item \url{app/View/Components/Search.php} \end{itemize} \\
+			ClasForm 		& Composant Blade pour afficher un formulaire de classe. 														& \begin{itemize}\item \url{resources/views/components/clas-form.blade.php}
+				\item \url{app/View/Components/ClasForm.php} \end{itemize} \\
+			DeleteForm 		& Composant Blade pour afficher un formulaire de suppression. 												& \begin{itemize}\item \url{resources/views/components/delete-form.blade.php}
+				\item \url{app/View/Components/DeleteForm.php} \end{itemize} \\
+			EtudTable 		& Composant Blade pour afficher un tableau d'étudiants. 														& \begin{itemize}\item \url{resources/views/components/etud-table.blade.php}
+				\item \url{app/View/Components/EtudTable.php} \end{itemize} \\
+			EtudForm 		& Composant Blade qui représente un formulaire pour la création ou la modification d'un étudiant. 			& \begin{itemize}\item \url{resources/views/components/etud-form.blade.php}
+				\item \url{app/View/Components/EtudForm.php} \end{itemize} \\
+			EprTable 		& Composant Blade pour représenter un tableau d'affichage des épreuves. 										& \begin{itemize}\item \url{resources/views/components/epr-table.blade.php}
+				\item \url{app/View/Components/EprTable.php} \end{itemize} \\
+			EprForm 		& Composant Blade pour représenter un formulaire pour les épreuves. 											& \begin{itemize}\item \url{resources/views/components/epr-form.blade.php}
+				\item \url{app/View/Components/EprForm.php} \end{itemize} \\
+			ArrivForm 		& Composant Blade pour afficher le formulaire d'arrivée des étudiants à une épreuve. 							& \begin{itemize}\item \url{resources/views/components/arriv-form.blade.php}
+				\item \url{app/View/Components/ArrivForm.php} \end{itemize} \\
+			EditInscrForm 	& Composant Blade pour afficher le formulaire de modification des inscriptions à une épreuve. 				& \begin{itemize}\item \url{resources/views/components/edit-inscr-form.blade.php}
+				\item \url{app/View/Components/EditInscrForm.php} \end{itemize} \\
+			ShowInscrForm 	& Composant pour afficher le formulaire de détails d'une inscription à une épreuve. 							& \begin{itemize}\item \url{resources/views/components/show-inscr-form.blade.php}
+				\item \url{app/View/Components/ShowInscrForm.php} \end{itemize} \\
+			ArrivTable 		& Composant Blade pour afficher le tableau de détails d'arrivée des étudiants à une course.  & \begin{itemize}\item \url{resources/views/components/arriv-table.blade.php}
+				\item \url{app/View/Components/ArrivTable.php} \end{itemize} \\	
+			\hline
+		\end{tabular}
+	\end{adjustbox}
+	\caption{Liste des components utilisés}
+\end{table}

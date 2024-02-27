@@ -1,0 +1,38 @@
+\newpage
+\subsection{Implémentation}
+
+J'ai utilisé l'outil de migration de Laravel pour créer la base de données. Voici les fichiers de migration utilisés : \\
+
+\begin{table}[H]
+	\begin{tabular}{|l|l|}
+		\hline
+		\textbf{Table} & \textbf{Fichier source} \\
+		\hline
+		Users &	\url{database/migrations/2014_10_12_000000_create_users_table.php} \\
+		Class &	\url{database/migrations/2014_10_12_000000_create_class_table.php} \\
+		Etuds &	\url{database/migrations/2014_10_12_000000_create_etuds_table.php} \\
+		Eprs &	\url{database/migrations/2014_10_12_000000_create_eprs_table.php} \\
+		Inscrs &	\url{database/migrations/2014_10_12_000000_create_inscrs_table.php} \\
+		\hline
+	\end{tabular} 
+	\caption{Listes des fichiers migrations utilisés}
+\end{table}
+
+
+
+\textbf{Pour la configuration et la connexion à la base de données dans le projet, j'ai utilisé les fichiers suivants : }
+
+\begin{itemize}[label=$\bullet$]
+	\item \url{.env}
+	\begin{itemize}[label=$\bullet$]
+		\item Configuration de l'accès à la base de données.
+	\end{itemize}
+	\item \url{app/Providers/AppServiceProvider.php}
+	\begin{itemize}[label=$\bullet$]
+		\item Définition de la longueur par défaut des chaînes de caractères dans la base de données.
+	\end{itemize}
+	\item \url{config/database.php}
+	\begin{itemize}[label=$\bullet$]
+		\item  Définition du moteur de stockage InnoDB.
+	\end{itemize}
+\end{itemize}
