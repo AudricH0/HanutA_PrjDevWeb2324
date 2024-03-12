@@ -1,7 +1,7 @@
 @php use Illuminate\Support\Facades\Auth; @endphp
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container-xl">
-        <a class="navbar-brand" href="#">Projet de dev web</a>
+        <a class="navbar-brand" href="/">Projet de dev web</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar"
                 aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
