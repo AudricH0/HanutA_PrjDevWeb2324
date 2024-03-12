@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/icons/font/bootstrap-icons.min.css')}}">
     <script src="{{asset('js/bootstrap.bundle.min.js')}}" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
+{{--    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>--}}
     <title></title>
 
     @yield('x-head')
