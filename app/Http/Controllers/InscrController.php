@@ -179,6 +179,14 @@ class InscrController extends Controller
      */
     public function show(Epr $epr, Etud $etud)
     {
+        $inscr = $epr->etuds()->find($etud->pkEtud);
+
+        // Vérifier si l'inscription existe car on peut passer une épreuve existante et un étudiant existant,
+        // mais que celui-ci ne soit pas isncrit ; on aura alors une erreur DB
+        if (!$inscr) {
+            abort(404); // Rediriger vers une erreur 404
+        }
+
         $breadcrump = [
             ['label' => 'Inscriptions', 'url' => '/inscr'],
             ['label' => $epr->date, 'url' => '/inscr/' . $epr->pkEpr],
